@@ -1,8 +1,5 @@
-import path from 'path'
-import { DataSource } from 'typeorm'
-
-import { appConfig } from '@/configs/app-config'
 import { logger } from '@/configs/logger'
+import dataSource from '@/configs/ormconfig'
 
 export default async () => {
   try {
@@ -16,15 +13,6 @@ export default async () => {
 }
 
 const connectPostgres = async () => {
-  const connection = appConfig.db.DATABASE_CONNECTION
-
-  const dataSource = new DataSource({
-    type: 'postgres',
-    url: connection,
-    schema: 'public',
-    migrations: [path.join(__dirname, '..', 'migrations/*.{ts,js}')],
-  })
-
   await dataSource.initialize()
 
   return dataSource

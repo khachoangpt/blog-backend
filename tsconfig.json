@@ -12,7 +12,8 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "strictPropertyInitialization": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "emitDecoratorMetadata": true
   },
   "files": ["src/type.d.ts"],
   "include": ["./src/**/*", "./server.ts"]

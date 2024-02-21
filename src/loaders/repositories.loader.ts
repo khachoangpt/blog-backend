@@ -1,4 +1,4 @@
-import { asClass, Lifetime } from 'awilix'
+import { asFunction, Lifetime } from 'awilix'
 import path from 'path'
 
 import { RepositoryLoaderParams } from '@/types'
@@ -7,10 +7,10 @@ export default async ({ container }: RepositoryLoaderParams) => {
   container.loadModules(
     [
       [
-        path.join(__dirname, '..', 'repositories/**/*.{ts,js}'),
+        path.join(__dirname, '..', 'repositories/*.{ts,js}'),
         {
-          register: asClass,
           lifetime: Lifetime.SINGLETON,
+          register: asFunction,
         },
       ],
     ],
@@ -18,7 +18,7 @@ export default async ({ container }: RepositoryLoaderParams) => {
       formatName: 'camelCase',
       resolverOptions: {
         lifetime: Lifetime.SINGLETON,
-        register: asClass,
+        register: asFunction,
       },
     },
   )

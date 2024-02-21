@@ -1,5 +1,7 @@
 import express, { Express } from 'express'
 
+import { handleError } from '@/utils'
+
 import adminRoutes from './admin'
 import customerRoutes from './customer'
 
@@ -9,6 +11,9 @@ export default (app: Express) => {
 
   customerRoutes(router)
   adminRoutes(router)
+
+  // handle error
+  app.use(handleError)
 
   return router
 }

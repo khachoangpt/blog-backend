@@ -5,7 +5,7 @@ dotenv.config()
 export const appConfig = {
   port: process.env.PORT,
   db: {
-    DATABASE_CONNECTION: process.env.DATABASE_CONNECTION,
+    DATABASE_URL: process.env.DATABASE_URL,
   },
   redis: {
     url: process.env.REDIS_URL ?? '',
