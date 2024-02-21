@@ -45,8 +45,8 @@ export default class BlogService {
       take: 50,
       order: { created_at: 'DESC' },
     },
-  ): Promise<Blog[]> {
-    const blogs = await this._blogRepository.find(config)
-    return blogs
+  ): Promise<{ blogs: Blog[]; count: number }> {
+    const [blogs, count] = await this._blogRepository.findAndCount(config)
+    return { blogs, count }
   }
 }

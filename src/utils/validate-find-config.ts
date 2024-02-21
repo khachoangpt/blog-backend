@@ -15,6 +15,7 @@ export const validateFindConfig = <T>(config: any) => {
 }
 
 const buildOrderBy = (orderArray: string[]) => {
+  if (!orderArray) return
   const result: { [K: string]: 'ASC' | 'DESC' } = {}
   for (const element of orderArray) {
     let orderBy = element
