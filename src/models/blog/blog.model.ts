@@ -81,6 +81,9 @@ export class Blog extends BaseModel {
  *           published_at:
  *             type: string
  *             description: Published at of blog
+ *           created_at:
+ *             type: string
+ *             description: Created at
  *           updated_at:
  *             type: string
  *             description: Updated at
