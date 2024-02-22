@@ -36,6 +36,12 @@
             "type": "string",
             "description": "Content of blog"
           },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Tag"
+            }
+          },
           "is_published": {
             "type": "string",
             "description": "Check blog is public or not"
@@ -51,6 +57,25 @@
           "updated_at": {
             "type": "string",
             "description": "Updated at"
+          }
+        }
+      },
+      "Tag": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of tag"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of tag"
+          },
+          "blogs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Blog"
+            }
           }
         }
       }

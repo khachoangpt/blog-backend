@@ -8,6 +8,28 @@ import {
   createBlogSchema,
 } from './create-blog.customer.schema'
 
+/**
+ * @swagger
+ *   /customer/blog:
+ *     post:
+ *       summary: Create a blog
+ *       operationId: CreateBlog
+ *       description: Create a blog
+ *       tags:
+ *         - Blog
+ *       requestBody:
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/CreateBlogParams'
+ *       responses:
+ *         201:
+ *           description: A blog
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 $ref: '#/components/schemas/Blog'
+ */
 export default async (req: Request, res: Response) => {
   const blogService: BlogService = req.scope.resolve('blogService')
   const validated = await validator<CreateBlogParams>(

@@ -10,9 +10,198 @@
       "description": "Development server"
     }
   ],
-  "paths": {},
+  "paths": {
+    "/customer/blog": {
+      "post": {
+        "summary": "Create a blog",
+        "operationId": "CreateBlog",
+        "description": "Create a blog",
+        "tags": [
+          "Blog"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBlogParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "A blog",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Blog"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get blog list",
+        "operationId": "GetBlogs",
+        "description": "Get blog list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "select",
+            "description": "Select",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "description": "Skip",
+            "schema": {
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "take",
+            "description": "Take",
+            "schema": {
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "relations",
+            "description": "Relations",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "description": "Order",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "tags": [
+          "Blog"
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of blogs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "description": "An array of blogs",
+                  "items": {
+                    "$ref": "#/components/schemas/Blog"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a blog",
+        "operationId": "UpdateBlog",
+        "description": "Update a blog",
+        "tags": [
+          "Blog"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBlogParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "A blog",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Blog"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
   "components": {
     "schemas": {
+      "CreateBlogParams": {
+        "type": "object",
+        "required": [
+          "title"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title of blog"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of blog"
+          },
+          "thumbnail": {
+            "type": "string",
+            "description": "Thumbnail of blog"
+          },
+          "content": {
+            "type": "string",
+            "description": "Content of blog"
+          }
+        }
+      },
+      "UpdateBlogParams": {
+        "type": "object",
+        "required": [
+          "id",
+          "title"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of blog"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of blog"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of blog"
+          },
+          "thumbnail": {
+            "type": "string",
+            "description": "Thumbnail of blog"
+          },
+          "content": {
+            "type": "string",
+            "description": "Content of blog"
+          }
+        }
+      },
       "Blog": {
         "type": "object",
         "properties": {
@@ -36,6 +225,12 @@
             "type": "string",
             "description": "Content of blog"
           },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Tag"
+            }
+          },
           "is_published": {
             "type": "string",
             "description": "Check blog is public or not"
@@ -51,6 +246,25 @@
           "updated_at": {
             "type": "string",
             "description": "Updated at"
+          }
+        }
+      },
+      "Tag": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of tag"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of tag"
+          },
+          "blogs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Blog"
+            }
           }
         }
       }

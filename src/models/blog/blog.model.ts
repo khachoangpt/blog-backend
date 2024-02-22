@@ -75,6 +75,10 @@ export class Blog extends BaseModel {
  *           content:
  *             type: string
  *             description: Content of blog
+ *           tags:
+ *             type: array
+ *             items:
+ *               $ref: '#/components/schemas/Tag'
  *           is_published:
  *             type: string
  *             description: Check blog is public or not

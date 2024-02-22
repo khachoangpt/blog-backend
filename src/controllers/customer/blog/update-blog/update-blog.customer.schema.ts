@@ -15,3 +15,30 @@ export const updateBlogSchema = z.object({
 })
 
 export type UpdateBlogParams = z.infer<typeof updateBlogSchema>
+
+/**
+ * @swagger
+ *   components:
+ *     schemas:
+ *       UpdateBlogParams:
+ *         type: object
+ *         required:
+ *           - id
+ *           - title
+ *         properties:
+ *           id:
+ *             type: string
+ *             description: Id of blog
+ *           title:
+ *             type: string
+ *             description: Title of blog
+ *           summary:
+ *             type: string
+ *             description: Summary of blog
+ *           thumbnail:
+ *             type: string
+ *             description: Thumbnail of blog
+ *           content:
+ *             type: string
+ *             description: Content of blog
+ */

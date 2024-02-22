@@ -18,3 +18,22 @@ export class Tag extends BaseModel {
     this.id = generateId(this.id, 'tag')
   }
 }
+
+/**
+ * @swagger
+ *   components:
+ *     schemas:
+ *       Tag:
+ *         type: object
+ *         properties:
+ *           id:
+ *             type: string
+ *             description: Id of tag
+ *           name:
+ *             type: string
+ *             description: Name of tag
+ *           blogs:
+ *             type: array
+ *             items:
+ *               $ref: '#/components/schemas/Blog'
+ */

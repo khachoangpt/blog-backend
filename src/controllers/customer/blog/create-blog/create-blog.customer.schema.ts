@@ -11,3 +11,26 @@ export const createBlogSchema = z.object({
 })
 
 export type CreateBlogParams = z.infer<typeof createBlogSchema>
+
+/**
+ * @swagger
+ *   components:
+ *     schemas:
+ *       CreateBlogParams:
+ *         type: object
+ *         required:
+ *           - title
+ *         properties:
+ *           title:
+ *             type: string
+ *             description: Title of blog
+ *           summary:
+ *             type: string
+ *             description: Summary of blog
+ *           thumbnail:
+ *             type: string
+ *             description: Thumbnail of blog
+ *           content:
+ *             type: string
+ *             description: Content of blog
+ */
