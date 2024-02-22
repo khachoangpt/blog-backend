@@ -52,10 +52,16 @@ import { validateFindConfig } from '@/utils'
  *           content:
  *             application/json:
  *               schema:
- *                 type: array
- *                 description: An array of blogs
- *                 items:
- *                   $ref: '#/components/schemas/Blog'
+ *                 type: object
+ *                 properties:
+ *                   blogs:
+ *                     type: array
+ *                     description: An array of blogs
+ *                     items:
+ *                       $ref: '#/components/schemas/Blog'
+ *                   count:
+ *                     type: number
+ *                     description: Total blogs
  */
 export default async (req: Request, res: Response) => {
   const blogService: BlogService = req.scope.resolve('blogService')
