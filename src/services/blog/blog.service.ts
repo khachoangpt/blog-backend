@@ -49,4 +49,12 @@ export default class BlogService {
     const [blogs, count] = await this._blogRepository.findAndCount(config)
     return { blogs, count }
   }
+
+  async getBlogDetail(id: string) {
+    const blog = await this._blogRepository.findOne({ where: { id } })
+    if (!blog) {
+      throw new Error('Blog not found')
+    }
+    return blog
+  }
 }

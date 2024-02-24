@@ -148,6 +148,37 @@
           }
         }
       }
+    },
+    "/customer/blog/{id}": {
+      "get": {
+        "summary": "Get blog detail",
+        "operationId": "GetBlogDetail",
+        "description": "Get blog detail",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Id of blog",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "tags": ["Blog"],
+        "responses": {
+          "200": {
+            "description": "A blog",
+            "content": {
+              "application": {
+                "schema": {
+                  "$ref": "#/components/schemas/Blog"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

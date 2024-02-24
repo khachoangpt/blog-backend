@@ -1,6 +1,7 @@
 import { Router } from 'express'
 
 import createBlogCustomerController from '@/controllers/customer/blog/create-blog/create-blog.customer.controller'
+import getBlogDetailCustomerController from '@/controllers/customer/blog/get-blog-detail/get-blog-detail.customer.controller'
 import getListBlogCustomerController from '@/controllers/customer/blog/get-list-blog/get-list-blog.customer.controller'
 import updateBlogCustomerController from '@/controllers/customer/blog/update-blog/update-blog.customer.controller'
 import { asyncHandler } from '@/utils'
@@ -15,5 +16,7 @@ export default (app: Router) => {
   router.put('/', asyncHandler(updateBlogCustomerController))
 
   router.get('/', asyncHandler(getListBlogCustomerController))
+
+  router.get('/:id', asyncHandler(getBlogDetailCustomerController))
   return router
 }
