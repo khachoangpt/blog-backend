@@ -39,6 +39,22 @@ export default class BlogService {
     return await this._blogRepository.findOne({ where: { id } })
   }
 
+  async publishBlog(id: string): Promise<Blog | null> {
+    const blogFind = await this._blogRepository.findOne({ where: { id } })
+    if (!blogFind) {
+      throw new Error('Blog not found.')
+    }
+    // check blog is already published
+    if (blogFind.is_published === true) {
+      throw new Error('Blog is already published.')
+    }
+    await this._blogRepository.update(id, {
+      is_published: true,
+      published_at: new Date(),
+    })
+    return await this._blogRepository.findOne({ where: { id } })
+  }
+
   async getListBlog(
     config: FindConfig<Blog> = {
       skip: 0,
@@ -46,12 +62,17 @@ export default class BlogService {
       order: { created_at: 'DESC' },
     },
   ): Promise<{ blogs: Blog[]; count: number }> {
-    const [blogs, count] = await this._blogRepository.findAndCount(config)
+    const [blogs, count] = await this._blogRepository.findAndCount({
+      ...config,
+      where: { is_published: true },
+    })
     return { blogs, count }
   }
 
   async getBlogDetail(id: string) {
-    const blog = await this._blogRepository.findOne({ where: { id } })
+    const blog = await this._blogRepository.findOne({
+      where: { id, is_published: true },
+    })
     if (!blog) {
       throw new Error('Blog not found')
     }

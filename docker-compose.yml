@@ -9,8 +9,8 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: backend
     volumes:
-      - ./docker_data/postgres:/var/lib/postgresql/data
-      - ./docker_data/postgres_sql:/home/postgres_sql
+      - /docker_data/postgres:/var/lib/postgresql/data
+      - /docker_data/postgres_sql:/home/postgres_sql
 
   redis:
     image: redis
