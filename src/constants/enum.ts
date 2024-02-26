@@ -10,9 +10,9 @@ export enum NodeEnvEnum {
  *       CustomerStatus:
  *         type: string
  *         enum:
- *           - ACTIVE
- *           - BANNED
- *           - DELETED
+ *           - active
+ *           - banned
+ *           - deleted
  */
 export enum CustomerStatus {
   ACTIVE = 'active',
