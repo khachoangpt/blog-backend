@@ -78,6 +78,10 @@
             }
           }
         }
+      },
+      "CustomerStatus": {
+        "type": "string",
+        "enum": ["ACTIVE", "BANNED", "DELETED"]
       }
     }
   },
