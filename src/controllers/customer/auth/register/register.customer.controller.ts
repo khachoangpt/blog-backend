@@ -1,9 +1,7 @@
-import { Request, Response } from 'express'
-
-import AuthService from '@/services/auth/auth.service'
+import type AuthService from '@/services/auth/auth.service'
 import { validator } from '@/utils'
-
-import { RegisterParams, registerSchema } from './register.customer.schema'
+import type { Request, Response } from 'express'
+import { type RegisterParams, registerSchema } from './register.customer.schema'
 
 /**
  * @swagger
@@ -28,8 +26,8 @@ import { RegisterParams, registerSchema } from './register.customer.schema'
  *                 $ref: '#/components/schemas/RegisterDTO'
  */
 export default async (req: Request, res: Response) => {
-  const validated = await validator<RegisterParams>(registerSchema, req.body)
-  const authService: AuthService = req.scope.resolve('authService')
-  const registerRes = await authService.register(validated)
-  res.status(201).json(registerRes)
+	const validated = await validator<RegisterParams>(registerSchema, req.body)
+	const authService: AuthService = req.scope.resolve('authService')
+	const registerRes = await authService.register(validated)
+	res.status(201).json(registerRes)
 }

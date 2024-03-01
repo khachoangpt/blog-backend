@@ -1,6 +1,6 @@
 export enum NodeEnvEnum {
-  DEVELOPMENT = 'development',
-  PRODUCTION = 'production',
+	DEVELOPMENT = 'development',
+	PRODUCTION = 'production',
 }
 
 /**
@@ -15,7 +15,7 @@ export enum NodeEnvEnum {
  *           - deleted
  */
 export enum CustomerStatus {
-  ACTIVE = 'active',
-  BANNED = 'banned',
-  DELETED = 'deleted',
+	ACTIVE = 'active',
+	BANNED = 'banned',
+	DELETED = 'deleted',
 }

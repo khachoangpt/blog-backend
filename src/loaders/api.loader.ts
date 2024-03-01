@@ -1,11 +1,11 @@
-import { Express } from 'express'
+import type { Express } from 'express'
 
 import routes from '@/routes'
 
 type ApiLoaderParams = {
-  app: Express
+	app: Express
 }
 
 export default async ({ app }: ApiLoaderParams) => {
-  app.use(routes(app))
+	app.use(routes(app))
 }

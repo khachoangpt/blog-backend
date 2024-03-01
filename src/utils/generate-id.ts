@@ -6,11 +6,11 @@ import { ulid } from 'ulid'
  * @param prefix
  */
 export const generateId = (idProperty?: string, prefix?: string): string => {
-  if (idProperty) {
-    return idProperty
-  }
+	if (idProperty) {
+		return idProperty
+	}
 
-  const id = ulid()
-  prefix = prefix ? `${prefix}_` : ''
-  return `${prefix}${id}`
+	const id = ulid()
+	const newPrefix = prefix ? `${prefix}_` : ''
+	return `${newPrefix}${id}`
 }

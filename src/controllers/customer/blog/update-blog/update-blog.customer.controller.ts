@@ -1,11 +1,9 @@
-import { Request, Response } from 'express'
-
-import BlogService from '@/services/blog/blog.service'
+import type BlogService from '@/services/blog/blog.service'
 import { validator } from '@/utils'
-
+import type { Request, Response } from 'express'
 import {
-  UpdateBlogParams,
-  updateBlogSchema,
+	type UpdateBlogParams,
+	updateBlogSchema,
 } from './update-blog.customer.schema'
 
 /**
@@ -31,10 +29,10 @@ import {
  *                 $ref: '#/components/schemas/Blog'
  */
 export default async (req: Request, res: Response) => {
-  const blogService: BlogService = req.scope.resolve('blogService')
-  const validated = await validator<UpdateBlogParams>(updateBlogSchema, {
-    ...req.body,
-  })
-  const blogUpdated = await blogService.updateBlog(validated)
-  res.status(200).json(blogUpdated)
+	const blogService: BlogService = req.scope.resolve('blogService')
+	const validated = await validator<UpdateBlogParams>(updateBlogSchema, {
+		...req.body,
+	})
+	const blogUpdated = await blogService.updateBlog(validated)
+	res.status(200).json(blogUpdated)
 }

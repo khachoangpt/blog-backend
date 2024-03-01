@@ -1,48 +1,48 @@
-import { AwilixContainer } from 'awilix'
-import { Express } from 'express'
+import type { AwilixContainer } from 'awilix'
+import type { Express } from 'express'
 
 export type ApiLoaderParams = {
-  app: Express
+	app: Express
 }
 
 export type ModelLoaderParams = {
-  container: AwilixContainer
+	container: AwilixContainer
 }
 
 export type ServiceLoaderParams = {
-  container: AwilixContainer
+	container: AwilixContainer
 }
 
 export type RepositoryLoaderParams = {
-  container: AwilixContainer
+	container: AwilixContainer
 }
 
 export type JobsLoaderParams = {
-  container: AwilixContainer
+	container: AwilixContainer
 }
 
 export type ScheduledJobConfig<T = unknown> = {
-  /**
-   * The name of the job
-   */
-  name: string
-  /**
-   * The cron schedule of the job, e.g. `0 0 * * *` for running every day at midnight.
-   */
-  schedule: string
-  /**
-   * An optional data object to pass to the job handler
-   */
-  data?: T
+	/**
+	 * The name of the job
+	 */
+	name: string
+	/**
+	 * The cron schedule of the job, e.g. `0 0 * * *` for running every day at midnight.
+	 */
+	schedule: string
+	/**
+	 * An optional data object to pass to the job handler
+	 */
+	data?: T
 }
 
 export type ScheduledJobArgs = {
-  container: AwilixContainer
+	container: AwilixContainer
 }
 
 type ScheduledJobHandler = (args: ScheduledJobArgs) => Promise<void>
 
 export type ScheduledJobModule = {
-  config: ScheduledJobConfig
-  handler: ScheduledJobHandler
+	config: ScheduledJobConfig
+	handler: ScheduledJobHandler
 }

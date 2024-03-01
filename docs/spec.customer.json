@@ -16,7 +16,9 @@
         "summary": "Login",
         "operationId": "Login",
         "description": "Login",
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -45,7 +47,9 @@
         "summary": "Register",
         "operationId": "Register",
         "description": "Register",
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -74,7 +78,9 @@
         "summary": "Create a blog",
         "operationId": "CreateBlog",
         "description": "Create a blog",
-        "tags": ["Blog"],
+        "tags": [
+          "Blog"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -152,7 +158,9 @@
             }
           }
         ],
-        "tags": ["Blog"],
+        "tags": [
+          "Blog"
+        ],
         "responses": {
           "200": {
             "description": "An array of blogs",
@@ -183,7 +191,9 @@
         "summary": "Update a blog",
         "operationId": "UpdateBlog",
         "description": "Update a blog",
-        "tags": ["Blog"],
+        "tags": [
+          "Blog"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -223,7 +233,9 @@
             "required": true
           }
         ],
-        "tags": ["Blog"],
+        "tags": [
+          "Blog"
+        ],
         "responses": {
           "200": {
             "description": "A blog",
@@ -252,7 +264,9 @@
             "required": true
           }
         ],
-        "tags": ["Blog"],
+        "tags": [
+          "Blog"
+        ],
         "responses": {
           "200": {
             "description": "A blog",
@@ -272,7 +286,9 @@
         "summary": "Create a tag",
         "operationId": "CreateTag",
         "description": "Create a tag",
-        "tags": ["Tag"],
+        "tags": [
+          "Tag"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -350,7 +366,9 @@
             }
           }
         ],
-        "tags": ["Tag"],
+        "tags": [
+          "Tag"
+        ],
         "responses": {
           "200": {
             "description": "An array of tags",
@@ -419,7 +437,10 @@
       },
       "LoginParams": {
         "type": "object",
-        "required": ["email", "password"],
+        "required": [
+          "email",
+          "password"
+        ],
         "properties": {
           "email": {
             "type": "string",
@@ -469,7 +490,12 @@
       },
       "RegisterParams": {
         "type": "object",
-        "required": ["first_name", "last_name", "email", "password"],
+        "required": [
+          "first_name",
+          "last_name",
+          "email",
+          "password"
+        ],
         "properties": {
           "first_name": {
             "type": "string",
@@ -495,7 +521,9 @@
       },
       "CreateBlogParams": {
         "type": "object",
-        "required": ["title"],
+        "required": [
+          "title"
+        ],
         "properties": {
           "title": {
             "type": "string",
@@ -517,7 +545,10 @@
       },
       "UpdateBlogParams": {
         "type": "object",
-        "required": ["id", "title"],
+        "required": [
+          "id",
+          "title"
+        ],
         "properties": {
           "id": {
             "type": "string",
@@ -543,7 +574,9 @@
       },
       "CreateTagParams": {
         "type": "object",
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "properties": {
           "name": {
             "type": "string",
@@ -627,7 +660,11 @@
       },
       "CustomerStatus": {
         "type": "string",
-        "enum": ["active", "banned", "deleted"]
+        "enum": [
+          "active",
+          "banned",
+          "deleted"
+        ]
       }
     }
   },

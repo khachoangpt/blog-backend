@@ -1,6 +1,5 @@
-import { Request, Response } from 'express'
-
-import BlogService from '@/services/blog/blog.service'
+import type BlogService from '@/services/blog/blog.service'
+import type { Request, Response } from 'express'
 
 /**
  * @swagger
@@ -27,8 +26,8 @@ import BlogService from '@/services/blog/blog.service'
  *                 $ref: '#/components/schemas/Blog'
  */
 export default async (req: Request, res: Response) => {
-  const id = req.params.id
-  const blogService: BlogService = req.scope.resolve('blogService')
-  const blogUpdated = await blogService.publishBlog(id)
-  res.status(200).json(blogUpdated)
+	const id = req.params.id
+	const blogService: BlogService = req.scope.resolve('blogService')
+	const blogUpdated = await blogService.publishBlog(id)
+	res.status(200).json(blogUpdated)
 }

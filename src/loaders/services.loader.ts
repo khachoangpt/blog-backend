@@ -1,25 +1,24 @@
-import { asClass, Lifetime } from 'awilix'
 import path from 'path'
-
-import { ServiceLoaderParams } from '@/types'
+import type { ServiceLoaderParams } from '@/types'
+import { Lifetime, asClass } from 'awilix'
 
 export default async ({ container }: ServiceLoaderParams) => {
-  container.loadModules(
-    [
-      [
-        path.join(__dirname, '..', 'services/**/*.{ts,js}'),
-        {
-          register: asClass,
-          lifetime: Lifetime.SINGLETON,
-        },
-      ],
-    ],
-    {
-      formatName: 'camelCase',
-      resolverOptions: {
-        lifetime: Lifetime.SINGLETON,
-        register: asClass,
-      },
-    },
-  )
+	container.loadModules(
+		[
+			[
+				path.join(__dirname, '..', 'services/**/*.{ts,js}'),
+				{
+					register: asClass,
+					lifetime: Lifetime.SINGLETON,
+				},
+			],
+		],
+		{
+			formatName: 'camelCase',
+			resolverOptions: {
+				lifetime: Lifetime.SINGLETON,
+				register: asClass,
+			},
+		},
+	)
 }

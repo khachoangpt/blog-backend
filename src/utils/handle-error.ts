@@ -1,17 +1,17 @@
-import { NextFunction, Request, Response } from 'express'
+import type { NextFunction, Request, Response } from 'express'
 
 export const handleError = (
-  error: Error,
-  req: Request,
-  res: Response,
-  next: NextFunction,
+	error: Error,
+	_req: Request,
+	res: Response,
+	next: NextFunction,
 ) => {
-  const statusCode = error.status ?? 500
+	const statusCode = error.status ?? 500
 
-  res.status(statusCode).json({
-    status: 'error',
-    code: statusCode,
-    message: error.message || 'Internal Server Error',
-  })
-  next()
+	res.status(statusCode).json({
+		status: 'error',
+		code: statusCode,
+		message: error.message || 'Internal Server Error',
+	})
+	next()
 }

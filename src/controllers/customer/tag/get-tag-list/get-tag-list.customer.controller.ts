@@ -1,8 +1,7 @@
-import { Request, Response } from 'express'
-
-import { Tag } from '@/models/tag/tag.model'
-import TagService from '@/services/tag/tag.service'
+import type { Tag } from '@/models/tag/tag.model'
+import type TagService from '@/services/tag/tag.service'
 import { validateFindConfig } from '@/utils'
+import type { Request, Response } from 'express'
 
 /**
  * @swagger
@@ -64,8 +63,8 @@ import { validateFindConfig } from '@/utils'
  *                     description: Total tags
  */
 export default async (req: Request, res: Response) => {
-  const tagService: TagService = req.scope.resolve('tagService')
-  const configValidated = validateFindConfig<Tag>(req.query)
-  const tags = await tagService.getTagList(configValidated)
-  res.status(200).json(tags)
+	const tagService: TagService = req.scope.resolve('tagService')
+	const configValidated = validateFindConfig<Tag>(req.query)
+	const tags = await tagService.getTagList(configValidated)
+	res.status(200).json(tags)
 }

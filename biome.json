@@ -23,6 +23,7 @@
 			},
 			"suspicious": { "noConsoleLog": "error" },
 			"correctness": {
+				"noUnusedVariables": "error",
 				"noUndeclaredVariables": "error"
 			},
 			"nursery": {

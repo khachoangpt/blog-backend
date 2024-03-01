@@ -1,19 +1,19 @@
 import z from 'zod'
 
 export const registerSchema = z.object({
-  first_name: z
-    .string({ required_error: 'First name is required' })
-    .min(1, 'First name is required'),
-  middle_name: z
-    .string({ required_error: 'Middle name is required' })
-    .min(1, 'Middle name is required'),
-  last_name: z
-    .string({ required_error: 'Last name is required' })
-    .min(1, 'Last name is required'),
-  email: z.string({ required_error: 'Email is required' }).email(),
-  password: z
-    .string({ required_error: 'Password is required' })
-    .min(1, 'Password is required'),
+	first_name: z
+		.string({ required_error: 'First name is required' })
+		.min(1, 'First name is required'),
+	middle_name: z
+		.string({ required_error: 'Middle name is required' })
+		.min(1, 'Middle name is required'),
+	last_name: z
+		.string({ required_error: 'Last name is required' })
+		.min(1, 'Last name is required'),
+	email: z.string({ required_error: 'Email is required' }).email(),
+	password: z
+		.string({ required_error: 'Password is required' })
+		.min(1, 'Password is required'),
 })
 
 /**

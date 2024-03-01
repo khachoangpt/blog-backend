@@ -89,7 +89,11 @@
       },
       "CustomerStatus": {
         "type": "string",
-        "enum": ["active", "banned", "deleted"]
+        "enum": [
+          "active",
+          "banned",
+          "deleted"
+        ]
       }
     }
   },
