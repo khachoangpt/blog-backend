@@ -32,25 +32,25 @@ import { CustomerStatus } from '@/constants'
  *             $ref: '#/components/schemas/CustomerStatus'
  */
 export type LoginDTO = {
-  id: string
-  created_at: string
-  updated_at: string
-  first_name: string
-  middle_name: string
-  last_name: string
-  email: string
-  status: CustomerStatus
+	id: string
+	created_at: string
+	updated_at: string
+	first_name: string
+	middle_name: string
+	last_name: string
+	email: string
+	status: CustomerStatus
 }
 
 const loginDTODummy: LoginDTO = {
-  created_at: '',
-  email: '',
-  first_name: '',
-  id: '',
-  last_name: '',
-  middle_name: '',
-  status: CustomerStatus.ACTIVE,
-  updated_at: '',
+	created_at: '',
+	email: '',
+	first_name: '',
+	id: '',
+	last_name: '',
+	middle_name: '',
+	status: CustomerStatus.ACTIVE,
+	updated_at: '',
 }
 
 export const keysOfLoginDTO = Object.keys(loginDTODummy) as (keyof LoginDTO)[]
