@@ -62,7 +62,7 @@
 		"zod": "^3.22.4"
 	},
 	"lint-staged": {
-		".{ts,js,cjs,mjs,jsx,tsx}": [
+		"*.{ts,js,cjs,mjs,jsx,tsx}": [
 			"biome check --colors force --no-errors-on-unmatched --files-ignore-unknown=true"
 		]
 	}
