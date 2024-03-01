@@ -1,7 +1,7 @@
-import AuthService from '@/services/auth/auth.service'
+import type AuthService from '@/services/auth/auth.service'
 import { validator } from '@/utils'
-import { Request, Response } from 'express'
-import { LoginParams, loginSchema } from './login.customer.schema'
+import type { Request, Response } from 'express'
+import { type LoginParams, loginSchema } from './login.customer.schema'
 
 /**
  * @swagger
