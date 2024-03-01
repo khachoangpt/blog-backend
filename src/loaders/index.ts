@@ -1,8 +1,6 @@
+import { logger } from '@/configs/logger'
 import { createContainer } from 'awilix'
 import type { Express, NextFunction, Request, Response } from 'express'
-
-import { logger } from '@/configs/logger'
-
 import apiLoader from './api.loader'
 import databaseLoader from './database.loader'
 import jobLoader from './job.loader'

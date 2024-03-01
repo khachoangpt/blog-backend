@@ -1,8 +1,7 @@
-import { type AwilixContainer, asValue } from 'awilix'
-import Redis from 'ioredis'
-
 import { appConfig } from '@/configs/app-config'
 import { logger } from '@/configs/logger'
+import { type AwilixContainer, asValue } from 'awilix'
+import Redis from 'ioredis'
 
 type Options = {
 	container: AwilixContainer

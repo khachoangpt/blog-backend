@@ -27,8 +27,7 @@
 				"noUndeclaredVariables": "error"
 			},
 			"nursery": {
-				"useImportType": "error",
-				"useFilenamingConvention": "error"
+				"useImportType": "error"
 			}
 		}
 	}
