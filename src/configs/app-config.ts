@@ -4,13 +4,17 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 export const appConfig = {
-	port: process.env.PORT,
+	port: Number.isNaN(Number(process.env.PORT))
+		? Number(process.env.PORT)
+		: 8000,
 	env: (process.env.NODE_ENV as NodeEnvEnum) ?? NodeEnvEnum.DEVELOPMENT,
-	db: {
-		DATABASE_URL: process.env.DATABASE_URL,
+	database: {
+		url:
+			process.env.DATABASE_URL ??
+			'postgres://postgres:postgres@localhost:5432/backend',
 	},
 	redis: {
-		url: process.env.REDIS_URL ?? '',
+		url: process.env.REDIS_URL ?? 'redis://localhost:6379',
 		options: {},
 	},
 }
