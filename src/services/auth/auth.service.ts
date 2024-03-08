@@ -1,3 +1,4 @@
+import prisma from '@/configs/db'
 import { CustomerStatus } from '@/constants'
 import {
 	type LoginDTO,
@@ -10,13 +11,13 @@ import {
 } from '@/controllers/customer/auth/register/register.customer.dto'
 import type { RegisterParams } from '@/controllers/customer/auth/register/register.customer.schema'
 import { getData } from '@/utils/get-data'
-import { type Customer, PrismaClient } from '@prisma/client'
+import type { Customer } from '@prisma/client'
 import bcrypt from 'bcrypt'
+
 import { ulid } from 'ulid'
 
 export default class AuthService {
 	async login(loginParams: LoginParams): Promise<LoginDTO> {
-		const prisma = new PrismaClient()
 		const customerFind = await prisma.customer.findFirst({
 			where: { email: loginParams.email },
 		})
@@ -34,7 +35,6 @@ export default class AuthService {
 	}
 
 	async register(registerParams: RegisterParams): Promise<RegisterDTO> {
-		const prisma = new PrismaClient()
 		const { email, password } = registerParams
 		// check account exist
 		const customerFind = await prisma.customer.findFirst({ where: { email } })

@@ -1,6 +1,7 @@
+import prisma from '@/configs/db'
 import type { CreateBlogParams } from '@/controllers/customer/blog/create-blog/create-blog.customer.schema'
 import type { UpdateBlogParams } from '@/controllers/customer/blog/update-blog/update-blog.customer.schema'
-import { type Blog, type Prisma, PrismaClient } from '@prisma/client'
+import type { Blog, Prisma } from '@prisma/client'
 import { ulid } from 'ulid'
 import type TagService from '../tag/tag.service'
 
@@ -16,7 +17,6 @@ export default class BlogService {
 	}
 
 	async createBlog(createBlogParams: CreateBlogParams): Promise<Blog> {
-		const prisma = new PrismaClient()
 		const blog = prisma.blog.create({
 			data: {
 				id: `blog_${ulid()}`,
@@ -31,7 +31,6 @@ export default class BlogService {
 	}
 
 	async updateBlog(blogUpdate: UpdateBlogParams): Promise<Blog | null> {
-		const prisma = new PrismaClient()
 		const { id, ...updateData } = blogUpdate
 		const blogFind = await prisma.blog.findFirst({ where: { id } })
 		if (!blogFind) {
@@ -42,7 +41,6 @@ export default class BlogService {
 	}
 
 	async publishBlog(id: string): Promise<Blog | null> {
-		const prisma = new PrismaClient()
 		const blogFind = await prisma.blog.findFirst({ where: { id } })
 		if (!blogFind) {
 			throw new Error('Blog not found.')
@@ -64,7 +62,6 @@ export default class BlogService {
 	async getListBlog(
 		config: Prisma.BlogFindManyArgs,
 	): Promise<{ blogs: Blog[]; count: number }> {
-		const prisma = new PrismaClient()
 		const blogs = await prisma.blog.findMany({
 			...config,
 			where: { is_published: true },
@@ -73,7 +70,6 @@ export default class BlogService {
 	}
 
 	async getBlogDetail(id: string) {
-		const prisma = new PrismaClient()
 		const blog = await prisma.blog.findFirst({
 			where: { id, is_published: true },
 		})
