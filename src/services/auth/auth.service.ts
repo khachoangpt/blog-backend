@@ -9,24 +9,15 @@ import {
 	keysOfRegisterDTO,
 } from '@/controllers/customer/auth/register/register.customer.dto'
 import type { RegisterParams } from '@/controllers/customer/auth/register/register.customer.schema'
-import type { Customer } from '@/models/customer/customer.model'
-import type { CustomerRepository } from '@/repositories/customer.repository'
 import { getData } from '@/utils/get-data'
+import { type Customer, PrismaClient } from '@prisma/client'
 import bcrypt from 'bcrypt'
-
-type InjectableDependencies = {
-	customerRepository: typeof CustomerRepository
-}
+import { ulid } from 'ulid'
 
 export default class AuthService {
-	protected readonly _customerRepository: typeof CustomerRepository
-
-	constructor({ customerRepository }: InjectableDependencies) {
-		this._customerRepository = customerRepository
-	}
-
 	async login(loginParams: LoginParams): Promise<LoginDTO> {
-		const customerFind = await this._customerRepository.findOne({
+		const prisma = new PrismaClient()
+		const customerFind = await prisma.customer.findFirst({
 			where: { email: loginParams.email },
 		})
 		if (!customerFind || customerFind.status !== CustomerStatus.ACTIVE) {
@@ -39,25 +30,25 @@ export default class AuthService {
 		if (!isPasswordValid) {
 			throw new Error('Email or password incorrect.')
 		}
-
 		return getData<Customer, LoginDTO>(customerFind, keysOfLoginDTO)
 	}
 
 	async register(registerParams: RegisterParams): Promise<RegisterDTO> {
+		const prisma = new PrismaClient()
 		const { email, password } = registerParams
 		// check account exist
-		const customerFind = await this._customerRepository.findOne({
-			where: { email },
-		})
+		const customerFind = await prisma.customer.findFirst({ where: { email } })
 		if (customerFind) {
 			throw new Error('Customer is already exist')
 		}
 		const passwordHash = await bcrypt.hash(password, 10)
-		const customerCreated = this._customerRepository.create({
-			...registerParams,
-			password: passwordHash,
+		const customer = await prisma.customer.create({
+			data: {
+				...registerParams,
+				id: `customer_${ulid()}`,
+				password: passwordHash,
+			},
 		})
-		const customer = await this._customerRepository.save(customerCreated)
 		return getData<Customer, RegisterDTO>(customer, keysOfRegisterDTO)
 	}
 }

@@ -1,6 +1,4 @@
-import type { Blog } from '@/models/blog/blog.model'
 import type BlogService from '@/services/blog/blog.service'
-import { validateFindConfig } from '@/utils'
 import type { Request, Response } from 'express'
 
 /**
@@ -64,7 +62,6 @@ import type { Request, Response } from 'express'
  */
 export default async (req: Request, res: Response) => {
 	const blogService: BlogService = req.scope.resolve('blogService')
-	const configValidated = validateFindConfig<Blog>(req.query)
-	const blogs = await blogService.getListBlog(configValidated)
+	const blogs = await blogService.getListBlog(req.query)
 	res.status(200).json(blogs)
 }

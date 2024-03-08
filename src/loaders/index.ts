@@ -2,10 +2,8 @@ import { logger } from '@/configs/logger'
 import { createContainer } from 'awilix'
 import type { Express, NextFunction, Request, Response } from 'express'
 import apiLoader from './api.loader'
-import databaseLoader from './database.loader'
 import jobLoader from './job.loader'
 import redisLoader from './redis.loader'
-import repositoriesLoader from './repositories.loader'
 import servicesLoader from './services.loader'
 
 export default async (app: Express) => {
@@ -17,17 +15,9 @@ export default async (app: Express) => {
 		next()
 	})
 
-	logger.info('Start Database Loader')
-	await databaseLoader()
-	logger.info('Success Database Loader')
-
 	logger.info('Start Service Loader')
 	await servicesLoader({ container })
 	logger.info('Success Service Loader')
-
-	logger.info('Start Repository Loader')
-	await repositoriesLoader({ container })
-	logger.info('Success Repository Loader')
 
 	logger.info('Start Api Loader')
 	await apiLoader({ app })

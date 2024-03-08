@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Customer {
+  id          String         @id
+  first_name  String         @db.VarChar(256)
+  middle_name String?        @db.VarChar(256)
+  last_name   String         @db.VarChar(256)
+  email       String         @unique @db.VarChar(256)
+  password    String
+  status      CustomerStatus @default(active)
+  created_at  DateTime       @default(now()) @db.Timestamptz()
+  updated_at  DateTime       @default(now()) @db.Timestamptz()
+  deleted_at  DateTime?      @db.Timestamptz()
+
+  @@map("customers")
+}
+
+model Blog {
+  id           String      @id
+  title        String
+  summary      String
+  thumbnail    String
+  content      String
+  is_published Boolean
+  published_at DateTime?   @db.Timestamptz()
+  created_at   DateTime    @default(now()) @db.Timestamptz()
+  updated_at   DateTime    @default(now()) @db.Timestamptz()
+  deleted_at   DateTime?   @db.Timestamptz()
+  tags         TagsBlogs[]
+
+  @@map("blogs")
+}
+
+model Tag {
+  id         String      @id
+  name       String      @db.VarChar(256)
+  created_at DateTime    @default(now()) @db.Timestamptz()
+  updated_at DateTime    @default(now()) @db.Timestamptz()
+  deleted_at DateTime?   @db.Timestamptz()
+  blogs      TagsBlogs[]
+
+  @@map("tags")
+}
+
+model TagsBlogs {
+  blog_id String
+  blog    Blog   @relation(fields: [blog_id], references: [id])
+  tag_id  String
+  tag     Tag    @relation(fields: [tag_id], references: [id])
+
+  @@id([blog_id, tag_id])
+  @@map("tags_blogs")
+}
+
+enum CustomerStatus {
+  active
+  banned
+  deleted
+}

@@ -1,44 +1,27 @@
 import type { CreateTagParams } from '@/controllers/customer/tag/create-tag/create-tag.customer.schema'
-import type { Tag } from '@/models/tag/tag.model'
-import type { TagRepository } from '@/repositories/tag.repository'
-import type { FindConfig } from '@/type'
-import { ILike } from 'typeorm'
-
-type InjectableDependencies = {
-	tagRepository: typeof TagRepository
-}
+import { type Prisma, PrismaClient, type Tag } from '@prisma/client'
+import { ulid } from 'ulid'
 
 export default class TagService {
-	protected readonly _tagRepository: typeof TagRepository
-
-	constructor({ tagRepository }: InjectableDependencies) {
-		this._tagRepository = tagRepository
-	}
-
 	async createTag(createTagParams: CreateTagParams) {
-		const tagFind = await this._tagRepository.findOne({
-			where: { name: ILike(createTagParams.name) },
+		const prisma = new PrismaClient()
+		const tagFind = await prisma.tag.findFirst({
+			where: { name: { equals: createTagParams.name } },
 		})
 		if (tagFind) {
 			throw new Error('Tag is already exist')
 		}
-		const tagCreated = this._tagRepository.create({
-			name: createTagParams.name,
+		const tag = await prisma.tag.create({
+			data: { name: createTagParams.name, id: `tag_${ulid()}` },
 		})
-		const tagNew = await this._tagRepository.save(tagCreated)
-		return tagNew
+		return tag
 	}
 
 	async getTagList(
-		config: FindConfig<Tag> = {
-			skip: 0,
-			take: 50,
-			order: { created_at: 'ASC' },
-		},
+		config: Prisma.TagFindManyArgs,
 	): Promise<{ tags: Tag[]; count: number }> {
-		const [tags, count] = await this._tagRepository.findAndCount({
-			...config,
-		})
-		return { tags, count }
+		const prisma = new PrismaClient()
+		const tagsFind = await prisma.tag.findMany(config)
+		return { tags: tagsFind, count: tagsFind.length }
 	}
 }

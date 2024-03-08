@@ -1,6 +1,4 @@
-import type { Tag } from '@/models/tag/tag.model'
 import type TagService from '@/services/tag/tag.service'
-import { validateFindConfig } from '@/utils'
 import type { Request, Response } from 'express'
 
 /**
@@ -64,7 +62,6 @@ import type { Request, Response } from 'express'
  */
 export default async (req: Request, res: Response) => {
 	const tagService: TagService = req.scope.resolve('tagService')
-	const configValidated = validateFindConfig<Tag>(req.query)
-	const tags = await tagService.getTagList(configValidated)
+	const tags = await tagService.getTagList(req.query)
 	res.status(200).json(tags)
 }
