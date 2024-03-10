@@ -2,7 +2,7 @@
  * @swagger
  *   components:
  *     schemas:
- *       Tag:
+ *       CreateTagResponse:
  *         type: object
  *         properties:
  *           id:
@@ -11,10 +11,17 @@
  *           name:
  *             type: string
  *             description: Name of tag
- *           created_at:
- *             type: string
- *             description: Created at
- *           updated_at:
- *             type: string
- *             description: Updated at
  */
+export type CreateTagResponse = {
+	id: string
+	name: string
+}
+
+const createTagResponseDummy = {
+	id: 'id',
+	name: 'name',
+}
+
+export const keysOfCreateTagResponse = Object.keys(
+	createTagResponseDummy,
+) as Array<keyof CreateTagResponse>

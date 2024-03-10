@@ -26,7 +26,7 @@ import {
  *           content:
  *             application/json:
  *               schema:
- *                 $ref: '#/components/schemas/Tag'
+ *                 $ref: '#/components/schemas/CreateTagResponse'
  */
 export default async (req: Request, res: Response) => {
 	const validated = await validator<CreateTagParams>(createTagSchema, req.body)

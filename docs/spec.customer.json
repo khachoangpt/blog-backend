@@ -304,7 +304,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Tag"
+                  "$ref": "#/components/schemas/CreateTagResponse"
                 }
               }
             }
@@ -381,7 +381,7 @@
                       "type": "array",
                       "description": "An array of tags",
                       "items": {
-                        "$ref": "#/components/schemas/Tag"
+                        "$ref": "#/components/schemas/GetTagListResponse"
                       }
                     },
                     "count": {
@@ -812,6 +812,19 @@
           }
         }
       },
+      "CreateTagResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of tag"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of tag"
+          }
+        }
+      },
       "CreateTagParams": {
         "type": "object",
         "required": [
@@ -824,24 +837,19 @@
           }
         }
       },
-      "Tag": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Id of tag"
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of tag"
-          },
-          "created_at": {
-            "type": "string",
-            "description": "Created at"
-          },
-          "updated_at": {
-            "type": "string",
-            "description": "Updated at"
+      "GetTagListResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Id of tag"
+            },
+            "name": {
+              "type": "string",
+              "description": "Name of tag"
+            }
           }
         }
       },

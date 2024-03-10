@@ -55,7 +55,7 @@ import type { Request, Response } from 'express'
  *                     type: array
  *                     description: An array of tags
  *                     items:
- *                       $ref: '#/components/schemas/Tag'
+ *                       $ref: '#/components/schemas/GetTagListResponse'
  *                   count:
  *                     type: number
  *                     description: Total tags
