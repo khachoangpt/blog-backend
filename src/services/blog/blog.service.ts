@@ -1,8 +1,8 @@
 import prisma from '@/configs/db'
 import type { CreateBlogParams } from '@/controllers/customer/blog/create-blog/create-blog.customer.schema'
 import type { UpdateBlogParams } from '@/controllers/customer/blog/update-blog/update-blog.customer.schema'
+import { generateId } from '@/utils'
 import type { Blog, Prisma } from '@prisma/client'
-import { ulid } from 'ulid'
 import type TagService from '../tag/tag.service'
 
 type InjectableDependency = {
@@ -19,7 +19,7 @@ export default class BlogService {
 	async createBlog(createBlogParams: CreateBlogParams): Promise<Blog> {
 		const blog = prisma.blog.create({
 			data: {
-				id: `blog_${ulid()}`,
+				id: generateId('blog'),
 				content: createBlogParams.content ?? '',
 				summary: createBlogParams.summary ?? '',
 				thumbnail: createBlogParams.thumbnail ?? '',

@@ -10,11 +10,10 @@ import {
 	keysOfRegisterDTO,
 } from '@/controllers/customer/auth/register/register.customer.dto'
 import type { RegisterParams } from '@/controllers/customer/auth/register/register.customer.schema'
+import { generateId } from '@/utils'
 import { getData } from '@/utils/get-data'
 import type { Customer } from '@prisma/client'
 import bcrypt from 'bcrypt'
-
-import { ulid } from 'ulid'
 
 export default class AuthService {
 	async login(loginParams: LoginParams): Promise<LoginDTO> {
@@ -45,7 +44,7 @@ export default class AuthService {
 		const customer = await prisma.customer.create({
 			data: {
 				...registerParams,
-				id: `customer_${ulid()}`,
+				id: generateId('customer'),
 				password: passwordHash,
 			},
 		})
