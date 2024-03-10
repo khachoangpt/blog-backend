@@ -399,7 +399,7 @@
   },
   "components": {
     "schemas": {
-      "LoginDTO": {
+      "LoginResponse": {
         "type": "object",
         "properties": {
           "id": {

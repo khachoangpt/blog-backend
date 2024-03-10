@@ -4,7 +4,7 @@ import { CustomerStatus } from '@/constants'
  * @swagger
  *   components:
  *     schemas:
- *       LoginDTO:
+ *       LoginResponse:
  *         type: object
  *         properties:
  *           id:
@@ -31,7 +31,7 @@ import { CustomerStatus } from '@/constants'
  *           status:
  *             $ref: '#/components/schemas/CustomerStatus'
  */
-export type LoginDTO = {
+export type LoginResponse = {
 	id: string
 	created_at: string
 	updated_at: string
@@ -42,7 +42,7 @@ export type LoginDTO = {
 	status: CustomerStatus
 }
 
-const loginDTODummy: LoginDTO = {
+const loginResponseDummy: LoginResponse = {
 	created_at: '',
 	email: '',
 	first_name: '',
@@ -53,4 +53,6 @@ const loginDTODummy: LoginDTO = {
 	updated_at: '',
 }
 
-export const keysOfLoginDTO = Object.keys(loginDTODummy) as (keyof LoginDTO)[]
+export const keysOfLoginResponse = Object.keys(
+	loginResponseDummy,
+) as (keyof LoginResponse)[]

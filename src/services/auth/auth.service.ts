@@ -1,9 +1,9 @@
 import prisma from '@/configs/db'
 import { CustomerStatus } from '@/constants'
 import {
-	type LoginDTO,
-	keysOfLoginDTO,
-} from '@/controllers/customer/auth/login/login.customer.dto'
+	type LoginResponse,
+	keysOfLoginResponse,
+} from '@/controllers/customer/auth/login/login.customer.response'
 import type { LoginParams } from '@/controllers/customer/auth/login/login.customer.schema'
 import {
 	type RegisterDTO,
@@ -12,11 +12,10 @@ import {
 import type { RegisterParams } from '@/controllers/customer/auth/register/register.customer.schema'
 import { generateId } from '@/utils'
 import { getData } from '@/utils/get-data'
-import type { Customer } from '@prisma/client'
 import bcrypt from 'bcrypt'
 
 export default class AuthService {
-	async login(loginParams: LoginParams): Promise<LoginDTO> {
+	async login(loginParams: LoginParams): Promise<LoginResponse> {
 		const customerFind = await prisma.customer.findFirst({
 			where: { email: loginParams.email },
 		})
@@ -30,7 +29,7 @@ export default class AuthService {
 		if (!isPasswordValid) {
 			throw new Error('Email or password incorrect.')
 		}
-		return getData<Customer, LoginDTO>(customerFind, keysOfLoginDTO)
+		return getData<LoginResponse>(customerFind, keysOfLoginResponse)
 	}
 
 	async register(registerParams: RegisterParams): Promise<RegisterDTO> {
@@ -48,6 +47,6 @@ export default class AuthService {
 				password: passwordHash,
 			},
 		})
-		return getData<Customer, RegisterDTO>(customer, keysOfRegisterDTO)
+		return getData<RegisterDTO>(customer, keysOfRegisterDTO)
 	}
 }
