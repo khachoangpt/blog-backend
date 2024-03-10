@@ -55,7 +55,7 @@ import type { Request, Response } from 'express'
  *                     type: array
  *                     description: An array of blogs
  *                     items:
- *                       $ref: '#/components/schemas/Blog'
+ *                       $ref: '#/components/schemas/GetListBlogResponse'
  *                   count:
  *                     type: number
  *                     description: Total blogs

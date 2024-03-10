@@ -17,8 +17,4 @@
  *           updated_at:
  *             type: string
  *             description: Updated at
- *           blogs:
- *             type: array
- *             items:
- *               $ref: '#/components/schemas/Blog'
  */

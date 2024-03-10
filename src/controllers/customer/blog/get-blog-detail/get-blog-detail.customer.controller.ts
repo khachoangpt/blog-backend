@@ -23,7 +23,7 @@ import type { Request, Response } from 'express'
  *           content:
  *             application:
  *               schema:
- *                 $ref: '#/components/schemas/Blog'
+ *                 $ref: '#/components/schemas/GetBlogDetailResponse'
  */
 export default async (req: Request, res: Response) => {
 	const id = req.params.id

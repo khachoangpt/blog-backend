@@ -19,7 +19,7 @@ import { type RegisterParams, registerSchema } from './register.customer.schema'
  *               $ref: '#/components/schemas/RegisterParams'
  *       responses:
  *         201:
- *           description: Register DTO
+ *           description: Register response
  *           content:
  *             application/json:
  *               schema:

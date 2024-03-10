@@ -19,7 +19,7 @@ import { type LoginParams, loginSchema } from './login.customer.schema'
  *               $ref: '#/components/schemas/LoginParams'
  *       responses:
  *         201:
- *           description: Login DTO
+ *           description: Login response
  *           content:
  *             application/json:
  *               schema:

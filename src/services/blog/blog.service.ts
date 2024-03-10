@@ -1,4 +1,5 @@
 import prisma from '@/configs/db'
+import type { CreateBlogResponse } from '@/controllers/customer/blog/create-blog/create-blog.customer.response'
 import type { CreateBlogParams } from '@/controllers/customer/blog/create-blog/create-blog.customer.schema'
 import type { UpdateBlogParams } from '@/controllers/customer/blog/update-blog/update-blog.customer.schema'
 import { generateId } from '@/utils'
@@ -16,7 +17,9 @@ export default class BlogService {
 		this._tagService = tagService
 	}
 
-	async createBlog(createBlogParams: CreateBlogParams): Promise<Blog> {
+	async createBlog(
+		createBlogParams: CreateBlogParams,
+	): Promise<CreateBlogResponse> {
 		const blog = prisma.blog.create({
 			data: {
 				id: generateId('blog'),

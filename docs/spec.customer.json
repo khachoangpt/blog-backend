@@ -30,7 +30,7 @@
         },
         "responses": {
           "201": {
-            "description": "Login DTO",
+            "description": "Login response",
             "content": {
               "application/json": {
                 "schema": {
@@ -61,7 +61,7 @@
         },
         "responses": {
           "201": {
-            "description": "Register DTO",
+            "description": "Register response",
             "content": {
               "application/json": {
                 "schema": {
@@ -96,7 +96,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Blog"
+                  "$ref": "#/components/schemas/CreateBlogResponse"
                 }
               }
             }
@@ -173,7 +173,7 @@
                       "type": "array",
                       "description": "An array of blogs",
                       "items": {
-                        "$ref": "#/components/schemas/Blog"
+                        "$ref": "#/components/schemas/GetListBlogResponse"
                       }
                     },
                     "count": {
@@ -209,7 +209,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Blog"
+                  "$ref": "#/components/schemas/UpdateBlogResponse"
                 }
               }
             }
@@ -242,7 +242,7 @@
             "content": {
               "application": {
                 "schema": {
-                  "$ref": "#/components/schemas/Blog"
+                  "$ref": "#/components/schemas/GetBlogDetailResponse"
                 }
               }
             }
@@ -273,7 +273,7 @@
             "content": {
               "application": {
                 "schema": {
-                  "$ref": "#/components/schemas/Blog"
+                  "$ref": "#/components/schemas/PublishBlogResponse"
                 }
               }
             }
@@ -519,6 +519,51 @@
           }
         }
       },
+      "CreateBlogResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of blog"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of blog"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of blog"
+          },
+          "thumbnail": {
+            "type": "string",
+            "description": "Thumbnail of blog"
+          },
+          "content": {
+            "type": "string",
+            "description": "Content of blog"
+          },
+          "is_published": {
+            "type": "boolean",
+            "description": "Is published"
+          },
+          "published_at": {
+            "type": "string",
+            "description": "Published at"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Created at"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Updated at"
+          },
+          "deleted_at": {
+            "type": "string",
+            "description": "Deleted at"
+          }
+        }
+      },
       "CreateBlogParams": {
         "type": "object",
         "required": [
@@ -540,6 +585,201 @@
           "content": {
             "type": "string",
             "description": "Content of blog"
+          }
+        }
+      },
+      "GetBlogDetailResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of blog"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of blog"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of blog"
+          },
+          "thumbnail": {
+            "type": "string",
+            "description": "Thumbnail of blog"
+          },
+          "content": {
+            "type": "string",
+            "description": "Content of blog"
+          },
+          "is_published": {
+            "type": "boolean",
+            "description": "Is published"
+          },
+          "published_at": {
+            "type": "string",
+            "description": "Published at"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Created at"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Updated at"
+          },
+          "deleted_at": {
+            "type": "string",
+            "description": "Deleted at"
+          }
+        }
+      },
+      "GetListBlogResponse": {
+        "type": "object",
+        "properties": {
+          "blogs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Id of blog"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Title of blog"
+                },
+                "summary": {
+                  "type": "string",
+                  "description": "Summary of blog"
+                },
+                "thumbnail": {
+                  "type": "string",
+                  "description": "Thumbnail of blog"
+                },
+                "content": {
+                  "type": "string",
+                  "description": "Content of blog"
+                },
+                "is_published": {
+                  "type": "boolean",
+                  "description": "Is published"
+                },
+                "published_at": {
+                  "type": "string",
+                  "description": "Published at"
+                },
+                "created_at": {
+                  "type": "string",
+                  "description": "Created at"
+                },
+                "updated_at": {
+                  "type": "string",
+                  "description": "Updated at"
+                },
+                "deleted_at": {
+                  "type": "string",
+                  "description": "Deleted at"
+                }
+              }
+            }
+          },
+          "total": {
+            "type": "number",
+            "description": "Total blogs"
+          }
+        }
+      },
+      "PublishBlogResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of blog"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of blog"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of blog"
+          },
+          "thumbnail": {
+            "type": "string",
+            "description": "Thumbnail of blog"
+          },
+          "content": {
+            "type": "string",
+            "description": "Content of blog"
+          },
+          "is_published": {
+            "type": "boolean",
+            "description": "Is blog published"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Published at of blog"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Created at of blog"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Updated at of blog"
+          }
+        }
+      },
+      "UpdateBlogResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of blog"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of blog"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of blog"
+          },
+          "thumbnail": {
+            "type": "string",
+            "description": "Thumbnail of blog"
+          },
+          "content": {
+            "type": "string",
+            "description": "Content of blog"
+          },
+          "is_published": {
+            "type": "boolean",
+            "description": "True if blog is published"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date when blog is published"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date when blog is created"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date when blog is updated"
+          },
+          "deleted_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date when blog is deleted"
           }
         }
       },
@@ -584,53 +824,6 @@
           }
         }
       },
-      "Blog": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Id of blog"
-          },
-          "title": {
-            "type": "string",
-            "description": "Title of blog"
-          },
-          "summary": {
-            "type": "string",
-            "description": "Summary of blog"
-          },
-          "thumbnail": {
-            "type": "string",
-            "description": "Thumbnail of blog"
-          },
-          "content": {
-            "type": "string",
-            "description": "Content of blog"
-          },
-          "tags": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Tag"
-            }
-          },
-          "is_published": {
-            "type": "string",
-            "description": "Check blog is public or not"
-          },
-          "published_at": {
-            "type": "string",
-            "description": "Published at of blog"
-          },
-          "created_at": {
-            "type": "string",
-            "description": "Created at"
-          },
-          "updated_at": {
-            "type": "string",
-            "description": "Updated at"
-          }
-        }
-      },
       "Tag": {
         "type": "object",
         "properties": {
@@ -649,12 +842,6 @@
           "updated_at": {
             "type": "string",
             "description": "Updated at"
-          },
-          "blogs": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Blog"
-            }
           }
         }
       },

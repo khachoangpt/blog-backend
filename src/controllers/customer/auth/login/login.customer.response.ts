@@ -53,6 +53,6 @@ const loginResponseDummy: LoginResponse = {
 	updated_at: '',
 }
 
-export const keysOfLoginResponse = Object.keys(
-	loginResponseDummy,
-) as (keyof LoginResponse)[]
+export const keysOfLoginResponse = Object.keys(loginResponseDummy) as Array<
+	keyof LoginResponse
+>

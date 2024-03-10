@@ -26,7 +26,7 @@ import {
  *           content:
  *             application/json:
  *               schema:
- *                 $ref: '#/components/schemas/Blog'
+ *                 $ref: '#/components/schemas/CreateBlogResponse'
  */
 export default async (req: Request, res: Response) => {
 	const blogService: BlogService = req.scope.resolve('blogService')

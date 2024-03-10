@@ -2,7 +2,7 @@
  * @swagger
  *   components:
  *     schemas:
- *       Blog:
+ *       CreateBlogResponse:
  *         type: object
  *         properties:
  *           id:
@@ -20,20 +20,48 @@
  *           content:
  *             type: string
  *             description: Content of blog
- *           tags:
- *             type: array
- *             items:
- *               $ref: '#/components/schemas/Tag'
  *           is_published:
- *             type: string
- *             description: Check blog is public or not
+ *             type: boolean
+ *             description: Is published
  *           published_at:
  *             type: string
- *             description: Published at of blog
+ *             description: Published at
  *           created_at:
  *             type: string
  *             description: Created at
  *           updated_at:
  *             type: string
  *             description: Updated at
+ *           deleted_at:
+ *             type: string
+ *             description: Deleted at
  */
+export type CreateBlogResponse = {
+	id: string
+	title: string
+	summary: string
+	thumbnail: string
+	content: string
+	is_published: boolean
+	published_at: Date | null
+	created_at: Date
+	updated_at: Date
+	deleted_at: Date | null
+}
+
+const createBlogResponseDummy: CreateBlogResponse = {
+	id: '',
+	title: '',
+	summary: '',
+	thumbnail: '',
+	content: '',
+	is_published: false,
+	published_at: null,
+	created_at: new Date(),
+	updated_at: new Date(),
+	deleted_at: null,
+}
+
+export const keysOfCreateBlogResponse = Object.keys(
+	createBlogResponseDummy,
+) as Array<keyof CreateBlogResponse>

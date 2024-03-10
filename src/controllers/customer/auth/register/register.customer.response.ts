@@ -55,4 +55,4 @@ const registerResponseDummy: RegisterResponse = {
 
 export const keysOfRegisterResponse = Object.keys(
 	registerResponseDummy,
-) as (keyof RegisterResponse)[]
+) as Array<keyof RegisterResponse>
