@@ -23,7 +23,7 @@ import { type LoginParams, loginSchema } from './login.customer.schema'
  *           content:
  *             application/json:
  *               schema:
- *                 $ref: '#/components/schemas/LoginDTO'
+ *                 $ref: '#/components/schemas/LoginResponse'
  */
 export default async (req: Request, res: Response) => {
 	const validated = await validator<LoginParams>(loginSchema, req.body)

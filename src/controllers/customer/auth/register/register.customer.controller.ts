@@ -23,7 +23,7 @@ import { type RegisterParams, registerSchema } from './register.customer.schema'
  *           content:
  *             application/json:
  *               schema:
- *                 $ref: '#/components/schemas/RegisterDTO'
+ *                 $ref: '#/components/schemas/RegisterResponse'
  */
 export default async (req: Request, res: Response) => {
 	const validated = await validator<RegisterParams>(registerSchema, req.body)

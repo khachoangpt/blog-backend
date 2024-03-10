@@ -6,9 +6,9 @@ import {
 } from '@/controllers/customer/auth/login/login.customer.response'
 import type { LoginParams } from '@/controllers/customer/auth/login/login.customer.schema'
 import {
-	type RegisterDTO,
-	keysOfRegisterDTO,
-} from '@/controllers/customer/auth/register/register.customer.dto'
+	type RegisterResponse,
+	keysOfRegisterResponse,
+} from '@/controllers/customer/auth/register/register.customer.response'
 import type { RegisterParams } from '@/controllers/customer/auth/register/register.customer.schema'
 import { generateId } from '@/utils'
 import { getData } from '@/utils/get-data'
@@ -32,7 +32,7 @@ export default class AuthService {
 		return getData<LoginResponse>(customerFind, keysOfLoginResponse)
 	}
 
-	async register(registerParams: RegisterParams): Promise<RegisterDTO> {
+	async register(registerParams: RegisterParams): Promise<RegisterResponse> {
 		const { email, password } = registerParams
 		// check account exist
 		const customerFind = await prisma.customer.findFirst({ where: { email } })
@@ -47,6 +47,6 @@ export default class AuthService {
 				password: passwordHash,
 			},
 		})
-		return getData<RegisterDTO>(customer, keysOfRegisterDTO)
+		return getData<RegisterResponse>(customer, keysOfRegisterResponse)
 	}
 }

@@ -4,7 +4,7 @@ import { CustomerStatus } from '@/constants'
  * @swagger
  *   components:
  *     schemas:
- *       RegisterDTO:
+ *       RegisterResponse:
  *         type: object
  *         properties:
  *           id:
@@ -31,7 +31,7 @@ import { CustomerStatus } from '@/constants'
  *           status:
  *             $ref: '#/components/schemas/CustomerStatus'
  */
-export type RegisterDTO = {
+export type RegisterResponse = {
 	id: string
 	created_at: string
 	updated_at: string
@@ -42,7 +42,7 @@ export type RegisterDTO = {
 	status: CustomerStatus
 }
 
-const registerDTODummy: RegisterDTO = {
+const registerResponseDummy: RegisterResponse = {
 	created_at: '',
 	email: '',
 	first_name: '',
@@ -53,6 +53,6 @@ const registerDTODummy: RegisterDTO = {
 	updated_at: '',
 }
 
-export const keysOfRegisterDTO = Object.keys(
-	registerDTODummy,
-) as (keyof RegisterDTO)[]
+export const keysOfRegisterResponse = Object.keys(
+	registerResponseDummy,
+) as (keyof RegisterResponse)[]

@@ -34,7 +34,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoginDTO"
+                  "$ref": "#/components/schemas/LoginResponse"
                 }
               }
             }
@@ -65,7 +65,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegisterDTO"
+                  "$ref": "#/components/schemas/RegisterResponse"
                 }
               }
             }
@@ -452,7 +452,7 @@
           }
         }
       },
-      "RegisterDTO": {
+      "RegisterResponse": {
         "type": "object",
         "properties": {
           "id": {
