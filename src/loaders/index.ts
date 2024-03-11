@@ -3,6 +3,7 @@ import { createContainer } from 'awilix'
 import type { Express, NextFunction, Request, Response } from 'express'
 import apiLoader from './api.loader'
 import jobLoader from './job.loader'
+import passportLoader from './passport.loader'
 import redisLoader from './redis.loader'
 import servicesLoader from './services.loader'
 
@@ -18,6 +19,8 @@ export default async (app: Express) => {
 	logger.info('Start Service Loader')
 	await servicesLoader({ container })
 	logger.info('Success Service Loader')
+
+	await passportLoader({ app, container })
 
 	logger.info('Start Api Loader')
 	await apiLoader({ app })

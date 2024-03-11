@@ -3,6 +3,7 @@ import getBlogDetailCustomerController from '@/controllers/customer/blog/get-blo
 import getListBlogCustomerController from '@/controllers/customer/blog/get-list-blog/get-list-blog.customer.controller'
 import publishBlogCustomerController from '@/controllers/customer/blog/publish-blog/publish-blog.customer.controller'
 import updateBlogCustomerController from '@/controllers/customer/blog/update-blog/update-blog.customer.controller'
+import authenticateCustomer from '@/middlewares/authenticate-customer'
 import { asyncHandler } from '@/utils'
 import { Router } from 'express'
 
@@ -11,7 +12,11 @@ const router = Router()
 export default (app: Router) => {
 	app.use('/blog', router)
 
-	router.post('/', asyncHandler(createBlogCustomerController))
+	router.post(
+		'/',
+		authenticateCustomer(),
+		asyncHandler(createBlogCustomerController),
+	)
 
 	router.put('/', asyncHandler(updateBlogCustomerController))
 

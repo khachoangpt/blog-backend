@@ -1,9 +1,11 @@
+import type { Customer } from '@prisma/client'
 import type { AwilixContainer } from 'awilix'
 
 declare global {
 	namespace Express {
 		interface Request {
 			scope: AwilixContainer
+			customer: Customer
 		}
 	}
 

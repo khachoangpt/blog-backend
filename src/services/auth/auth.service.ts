@@ -1,3 +1,4 @@
+import { appConfig } from '@/configs/app-config'
 import prisma from '@/configs/db'
 import { CustomerStatus } from '@/constants'
 import {
@@ -13,6 +14,7 @@ import type { RegisterParams } from '@/controllers/customer/auth/register/regist
 import { generateId } from '@/utils'
 import { getData } from '@/utils/get-data'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 export default class AuthService {
 	async login(loginParams: LoginParams): Promise<LoginResponse> {
@@ -29,7 +31,15 @@ export default class AuthService {
 		if (!isPasswordValid) {
 			throw new Error('Email or password incorrect.')
 		}
-		return getData<LoginResponse>(customerFind, keysOfLoginResponse)
+		// generate jwt token
+		const token = jwt.sign(
+			{ email: customerFind.email, customerId: customerFind.id },
+			appConfig.jwt_secret,
+		)
+		return getData<LoginResponse>(
+			{ customer: customerFind, token },
+			keysOfLoginResponse,
+		)
 	}
 
 	async register(registerParams: RegisterParams): Promise<RegisterResponse> {

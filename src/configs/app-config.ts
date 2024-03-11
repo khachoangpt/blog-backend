@@ -7,6 +7,7 @@ export const appConfig = {
 	port: Number.isNaN(Number(process.env.PORT))
 		? Number(process.env.PORT)
 		: 8000,
+	jwt_secret: process.env.JWT_SECRET ?? 'secret',
 	env: (process.env.NODE_ENV as NodeEnvEnum) ?? NodeEnvEnum.DEVELOPMENT,
 	database: {
 		url:
