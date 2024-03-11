@@ -1,9 +1,10 @@
+import { asyncHandler } from '@/utils'
 import type { Customer } from '@prisma/client'
-import type { NextFunction, Request, RequestHandler, Response } from 'express'
+import type { NextFunction, Request, Response } from 'express'
 import passport from 'passport'
 
-export default (): RequestHandler => {
-	return (req: Request, res: Response, next: NextFunction) => {
+export const authenticateCustomer = asyncHandler(
+	async (req: Request, res: Response, next: NextFunction) => {
 		passport.authenticate(
 			'jwt',
 			{ session: false },
@@ -18,5 +19,5 @@ export default (): RequestHandler => {
 				return next()
 			},
 		)(req, res, next)
-	}
-}
+	},
+)
