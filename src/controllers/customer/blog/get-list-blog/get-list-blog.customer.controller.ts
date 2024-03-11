@@ -49,16 +49,7 @@ import type { Request, Response } from 'express'
  *           content:
  *             application/json:
  *               schema:
- *                 type: object
- *                 properties:
- *                   blogs:
- *                     type: array
- *                     description: An array of blogs
- *                     items:
- *                       $ref: '#/components/schemas/GetListBlogResponse'
- *                   count:
- *                     type: number
- *                     description: Total blogs
+ *                 $ref: '#/components/schemas/GetListBlogResponse'
  */
 export default async (req: Request, res: Response) => {
 	const blogService: BlogService = req.scope.resolve('blogService')

@@ -49,16 +49,7 @@ import type { Request, Response } from 'express'
  *           content:
  *             application/json:
  *               schema:
- *                 type: object
- *                 properties:
- *                   tags:
- *                     type: array
- *                     description: An array of tags
- *                     items:
- *                       $ref: '#/components/schemas/GetTagListResponse'
- *                   count:
- *                     type: number
- *                     description: Total tags
+ *                 $ref: '#/components/schemas/GetTagListResponse'
  */
 export default async (req: Request, res: Response) => {
 	const tagService: TagService = req.scope.resolve('tagService')

@@ -35,6 +35,7 @@ export default class AuthService {
 		const token = jwt.sign(
 			{ email: customerFind.email, customerId: customerFind.id },
 			appConfig.jwt_secret,
+			{ expiresIn: '30days' },
 		)
 		return getData<LoginResponse>(
 			{ customer: customerFind, token },

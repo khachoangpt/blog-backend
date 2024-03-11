@@ -7,14 +7,14 @@ export default (): RequestHandler => {
 		passport.authenticate(
 			'jwt',
 			{ session: false },
-			(err: Error, customer: Customer) => {
+			(err: Error, customerData: { data: Customer }) => {
 				if (err) {
 					return next(err)
 				}
-				if (!customer) {
+				if (!customerData) {
 					throw new Error('Customer not found')
 				}
-				req.customer = customer
+				req.customer = customerData.data
 				return next()
 			},
 		)(req, res, next)

@@ -167,20 +167,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "blogs": {
-                      "type": "array",
-                      "description": "An array of blogs",
-                      "items": {
-                        "$ref": "#/components/schemas/GetListBlogResponse"
-                      }
-                    },
-                    "count": {
-                      "type": "number",
-                      "description": "Total blogs"
-                    }
-                  }
+                  "$ref": "#/components/schemas/GetListBlogResponse"
                 }
               }
             }
@@ -274,6 +261,26 @@
               "application": {
                 "schema": {
                   "$ref": "#/components/schemas/PublishBlogResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customer": {
+      "get": {
+        "summary": "Get current customer",
+        "tags": [
+          "Customer"
+        ],
+        "responses": {
+          "200": {
+            "description": "Get current customer success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetMeResponse"
                 }
               }
             }
@@ -375,20 +382,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "tags": {
-                      "type": "array",
-                      "description": "An array of tags",
-                      "items": {
-                        "$ref": "#/components/schemas/GetTagListResponse"
-                      }
-                    },
-                    "count": {
-                      "type": "number",
-                      "description": "Total tags"
-                    }
-                  }
+                  "$ref": "#/components/schemas/GetTagListResponse"
                 }
               }
             }
@@ -820,6 +814,45 @@
           "content": {
             "type": "string",
             "description": "Content of blog"
+          }
+        }
+      },
+      "GetMeResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The id of the customer"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date time of customer creation"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date time of customer update"
+          },
+          "first_name": {
+            "type": "string",
+            "description": "The first name of customer"
+          },
+          "middle_name": {
+            "type": "string",
+            "description": "The middle name of customer"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "The last name of customer"
+          },
+          "email": {
+            "type": "string",
+            "description": "The email of customer"
+          },
+          "status": {
+            "$ref": "#/components/schemas/CustomerStatus",
+            "description": "The status of the customer"
           }
         }
       },
