@@ -3,10 +3,10 @@ import type { Customer } from '@prisma/client'
 import type { NextFunction, Request, Response } from 'express'
 import passport from 'passport'
 
-export const authenticateCustomer = asyncHandler(
+export const authenticateAdmin = asyncHandler(
 	async (req: Request, res: Response, next: NextFunction) => {
 		passport.authenticate(
-			'jwt',
+			'jwt-admin',
 			{ session: false },
 			(err: Error, customerData: { data: Customer }) => {
 				if (err) {

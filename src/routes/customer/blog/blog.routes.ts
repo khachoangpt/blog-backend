@@ -1,6 +1,6 @@
 import getBlogDetailCustomerController from '@/controllers/customer/blog/get-blog-detail/get-blog-detail.customer.controller'
 import getListBlogCustomerController from '@/controllers/customer/blog/get-list-blog/get-list-blog.customer.controller'
-import { authenticateCustomer } from '@/middlewares/authenticate-customer'
+import { authenticateCustomer } from '@/middlewares'
 import { asyncHandler } from '@/utils'
 import { Router } from 'express'
 
