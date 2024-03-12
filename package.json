@@ -6,10 +6,6 @@
 	"scripts": {
 		"build": "rimraf ./dist && tsc && tsc-alias",
 		"start": "pnpm build && node dist/server.js",
-		"lint": "eslint .",
-		"lint:fix": "eslint . --fix",
-		"prettier": "prettier --check .",
-		"prettier:fix": "prettier --write .",
 		"dev": "tsx watch server.ts",
 		"orm": "pnpm build && pnpm typeorm -d dist/src/configs/ormconfig.js",
 		"migration:generate": "pnpm orm migration:generate",
