@@ -5,9 +5,11 @@ import { keysOfGetMeResponse } from './get-me.customer.response'
 
 /**
  * @swagger
- * /customer:
+ * /customer/me:
  *   get:
  *     summary: Get current customer
+ *     operationId: GetMe
+ *     description: Get current customer
  *     tags:
  *       - Customer
  *     responses:

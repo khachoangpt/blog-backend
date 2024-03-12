@@ -268,9 +268,11 @@
         }
       }
     },
-    "/customer": {
+    "/customer/me": {
       "get": {
         "summary": "Get current customer",
+        "operationId": "GetMe",
+        "description": "Get current customer",
         "tags": [
           "Customer"
         ],

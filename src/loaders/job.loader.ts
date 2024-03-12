@@ -1,8 +1,8 @@
-import { join } from 'path'
+import { readdir } from 'node:fs/promises'
+import { join } from 'node:path'
 import { logger } from '@/configs/logger'
 import type JobSchedulerService from '@/services/job-scheduler/job-scheduler.service'
 import type { JobsLoaderParams, ScheduledJobModule } from '@/types'
-import { readdir } from 'fs/promises'
 
 export default async ({ container }: JobsLoaderParams) => {
 	const jobDescriptors: Map<string, ScheduledJobModule> = new Map()
