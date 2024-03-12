@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import { logger } from '@/configs/logger'
 import swaggerJSDoc from 'swagger-jsdoc'
 import { validateOAS } from './validate-oas'

@@ -1,6 +1,6 @@
 import prisma from '@/configs/db'
-import type { CreateTagResponse } from '@/controllers/customer/tag/create-tag/create-tag.customer.response'
-import type { CreateTagParams } from '@/controllers/customer/tag/create-tag/create-tag.customer.schema'
+import type { CreateTagResponse } from '@/controllers/admin/tag/create-tag/create-tag.customer.response'
+import type { CreateTagParams } from '@/controllers/admin/tag/create-tag/create-tag.customer.schema'
 import type { GetTagListResponse } from '@/controllers/customer/tag/get-tag-list/get-tag-list.customer.response'
 import { generateId } from '@/utils'
 import type { Prisma } from '@prisma/client'
