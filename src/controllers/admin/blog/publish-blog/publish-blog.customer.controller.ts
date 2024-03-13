@@ -1,5 +1,7 @@
 import type BlogService from '@/services/blog/blog.service'
+import { getData } from '@/utils/get-data'
 import type { Request, Response } from 'express'
+import { type PublishBlogResponse, keysOfPublishBlogResponse } from '.'
 
 /**
  * @swagger
@@ -29,5 +31,5 @@ export default async (req: Request, res: Response) => {
 	const id = req.params.id
 	const blogService: BlogService = req.scope.resolve('blogService')
 	const blogUpdated = await blogService.publishBlog(id)
-	res.status(200).json(blogUpdated)
+	res.status(200).json(getData<PublishBlogResponse>(blogUpdated, keysOfPublishBlogResponse))
 }

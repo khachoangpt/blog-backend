@@ -9,7 +9,8 @@
 			"quoteStyle": "single",
 			"trailingComma": "all",
 			"semicolons": "asNeeded",
-			"arrowParentheses": "always"
+			"arrowParentheses": "always",
+			"lineWidth": 100
 		}
 	},
 	"linter": {

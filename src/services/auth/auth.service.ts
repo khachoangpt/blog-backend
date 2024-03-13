@@ -2,52 +2,62 @@ import { appConfig } from '@/configs/app-config'
 import prisma from '@/configs/db'
 import { CustomerStatus } from '@/constants'
 import {
+	type LoginParams,
 	type LoginResponse,
 	keysOfLoginResponse,
-} from '@/controllers/customer/auth/login/login.customer.response'
-import type { LoginParams } from '@/controllers/customer/auth/login/login.customer.schema'
+} from '@/controllers/customer/auth/login'
 import {
+	type RegisterParams,
 	type RegisterResponse,
 	keysOfRegisterResponse,
-} from '@/controllers/customer/auth/register/register.customer.response'
-import type { RegisterParams } from '@/controllers/customer/auth/register/register.customer.schema'
+} from '@/controllers/customer/auth/register'
 import { generateId } from '@/utils'
 import { getData } from '@/utils/get-data'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
 export default class AuthService {
+	/**
+	 * Login with email and password
+	 *
+	 * @param {LoginParams} loginParams - login parameters
+	 * @return {Promise<LoginResponse>} login response
+	 */
 	async login(loginParams: LoginParams): Promise<LoginResponse> {
-		const customerFind = await prisma.customer.findFirst({
+		const existingCustomer = await prisma.customer.findFirst({
 			where: { email: loginParams.email },
 		})
-		if (!customerFind || customerFind.status !== CustomerStatus.ACTIVE) {
+		if (!existingCustomer || existingCustomer.status !== CustomerStatus.ACTIVE) {
 			throw new Error('Customer not found.')
 		}
-		const isPasswordValid = await bcrypt.compare(
-			loginParams.password,
-			customerFind.password,
-		)
+		const isPasswordValid = await bcrypt.compare(loginParams.password, existingCustomer.password)
 		if (!isPasswordValid) {
 			throw new Error('Email or password incorrect.')
 		}
 		// generate jwt token
 		const token = jwt.sign(
-			{ email: customerFind.email, customerId: customerFind.id },
+			{ email: existingCustomer.email, customerId: existingCustomer.id },
 			appConfig.jwt_secret,
-			{ expiresIn: '30days' },
+			{
+				expiresIn: '30days',
+			},
 		)
-		return getData<LoginResponse>(
-			{ customer: customerFind, token },
-			keysOfLoginResponse,
-		)
+		return getData<LoginResponse>({ customer: existingCustomer, token }, keysOfLoginResponse)
 	}
 
+	/**
+	 * Register
+	 *
+	 * @param {RegisterParams} registerParams - register parameters
+	 * @return {Promise<RegisterResponse>} register response
+	 */
 	async register(registerParams: RegisterParams): Promise<RegisterResponse> {
 		const { email, password } = registerParams
 		// check account exist
-		const customerFind = await prisma.customer.findFirst({ where: { email } })
-		if (customerFind) {
+		const existingCustomer = await prisma.customer.findFirst({
+			where: { email },
+		})
+		if (existingCustomer) {
 			throw new Error('Customer is already exist')
 		}
 		const passwordHash = await bcrypt.hash(password, 10)
@@ -58,6 +68,14 @@ export default class AuthService {
 				password: passwordHash,
 			},
 		})
-		return getData<RegisterResponse>(customer, keysOfRegisterResponse)
+		// generate jwt token
+		const token = jwt.sign(
+			{ email: customer.email, customerId: customer.id },
+			appConfig.jwt_secret,
+			{
+				expiresIn: '30days',
+			},
+		)
+		return getData<RegisterResponse>({ customer, token }, keysOfRegisterResponse)
 	}
 }

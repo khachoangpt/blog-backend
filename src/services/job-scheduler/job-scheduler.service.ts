@@ -3,10 +3,7 @@ import { logger } from '@/configs/logger'
 import { type Job, Queue, Worker } from 'bullmq'
 import { Redis } from 'ioredis'
 
-type ScheduledJobHandler<T = unknown> = (
-	data: T,
-	eventName: string,
-) => Promise<void>
+type ScheduledJobHandler<T = unknown> = (data: T, eventName: string) => Promise<void>
 
 class JobSchedulerService {
 	protected readonly queue: Queue
@@ -37,9 +34,7 @@ class JobSchedulerService {
 		return await Promise.all(
 			observers.map(async (subscriber) => {
 				return subscriber(data, eventName).catch((error) => {
-					logger.warn(
-						`An error occurred while processing ${eventName}: ${error}`,
-					)
+					logger.warn(`An error occurred while processing ${eventName}: ${error}`)
 					return error
 				})
 			}),

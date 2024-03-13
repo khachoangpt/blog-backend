@@ -56,6 +56,4 @@ const getMeResponseDummy: GetMeResponse = {
 	status: CustomerStatus.ACTIVE,
 }
 
-export const keysOfGetMeResponse = Object.keys(getMeResponseDummy) as Array<
-	keyof GetMeResponse
->
+export const keysOfGetMeResponse = Object.keys(getMeResponseDummy) as Array<keyof GetMeResponse>

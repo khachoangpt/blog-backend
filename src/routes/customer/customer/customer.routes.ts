@@ -1,4 +1,4 @@
-import getMeCustomerController from '@/controllers/customer/customer/get-me.customer.controller'
+import getMeCustomerController from '@/controllers/customer/customer/get-me/get-me.customer.controller'
 import { authenticateCustomer } from '@/middlewares'
 import { asyncHandler } from '@/utils'
 import { Router } from 'express'

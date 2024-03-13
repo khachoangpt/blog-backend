@@ -281,46 +281,49 @@
         "type": "object",
         "properties": {
           "customer": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "string",
-                "description": "Id of customer"
-              },
-              "created_at": {
-                "type": "string",
-                "format": "date-time",
-                "description": "Created at of customer"
-              },
-              "updated_at": {
-                "type": "string",
-                "format": "date-time",
-                "description": "Updated at of customer"
-              },
-              "first_name": {
-                "type": "string",
-                "description": "First name of customer"
-              },
-              "middle_name": {
-                "type": "string",
-                "description": "Middle name of customer"
-              },
-              "last_name": {
-                "type": "string",
-                "description": "Last name of customer"
-              },
-              "email": {
-                "type": "string",
-                "description": "Email of customer"
-              },
-              "status": {
-                "$ref": "#/components/schemas/CustomerStatus"
-              }
-            }
+            "$ref": "#/components/schemas/LoginResponseCustomer"
           },
           "token": {
             "type": "string",
             "description": "Token of customer"
+          }
+        }
+      },
+      "LoginResponseCustomer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of customer"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Created at of customer"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Updated at of customer"
+          },
+          "first_name": {
+            "type": "string",
+            "description": "First name of customer"
+          },
+          "middle_name": {
+            "type": "string",
+            "description": "Middle name of customer"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "Last name of customer"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email of customer"
+          },
+          "status": {
+            "$ref": "#/components/schemas/CustomerStatus"
           }
         }
       },
@@ -344,33 +347,42 @@
       "RegisterResponse": {
         "type": "object",
         "properties": {
+          "customer": {
+            "$ref": "#/components/schemas/RegisterResponseCustomer"
+          },
+          "token": {
+            "type": "string",
+            "description": "JWT token"
+          }
+        }
+      },
+      "RegisterResponseCustomer": {
+        "type": "object",
+        "properties": {
           "id": {
             "type": "string",
-            "description": "Id of customer"
+            "description": "customer id"
           },
           "created_at": {
             "type": "string",
-            "description": "Date of customer created"
+            "format": "date-time"
           },
           "updated_at": {
             "type": "string",
-            "description": "Date of customer updated"
+            "format": "date-time"
           },
           "first_name": {
-            "type": "string",
-            "description": "First name of customer"
+            "type": "string"
           },
           "middle_name": {
-            "type": "string",
-            "description": "Middle name of customer"
+            "type": "string"
           },
           "last_name": {
-            "type": "string",
-            "description": "Last name of customer"
+            "type": "string"
           },
           "email": {
             "type": "string",
-            "description": "Email of customer"
+            "format": "email"
           },
           "status": {
             "$ref": "#/components/schemas/CustomerStatus"
