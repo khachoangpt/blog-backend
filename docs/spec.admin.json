@@ -11,6 +11,37 @@
     }
   ],
   "paths": {
+    "/admin/auth/login": {
+      "post": {
+        "summary": "Login admin",
+        "operationId": "Login",
+        "description": "Login admin",
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginAdminParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Login admin response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginAdminResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/customer/blog": {
       "post": {
         "summary": "Create a blog",
@@ -138,6 +169,73 @@
   },
   "components": {
     "schemas": {
+      "LoginAdminResponse": {
+        "type": "object",
+        "properties": {
+          "customer": {
+            "$ref": "#/components/schemas/LoginAdminResponseCustomer"
+          },
+          "token": {
+            "type": "string",
+            "description": "Token of customer"
+          }
+        }
+      },
+      "LoginAdminResponseCustomer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of customer"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Created at of customer"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Updated at of customer"
+          },
+          "first_name": {
+            "type": "string",
+            "description": "First name of customer"
+          },
+          "middle_name": {
+            "type": "string",
+            "description": "Middle name of customer"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "Last name of customer"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email of customer"
+          },
+          "status": {
+            "$ref": "#/components/schemas/CustomerStatus"
+          }
+        }
+      },
+      "LoginAdminParams": {
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Email of customer"
+          },
+          "password": {
+            "type": "string",
+            "description": "Password of customer"
+          }
+        }
+      },
       "CreateBlogResponse": {
         "type": "object",
         "properties": {

@@ -2,6 +2,11 @@ import { appConfig } from '@/configs/app-config'
 import prisma from '@/configs/db'
 import { CustomerStatus } from '@/constants'
 import {
+	type LoginAdminParams,
+	type LoginAdminResponse,
+	keysOfLoginAdminResponse,
+} from '@/controllers/admin/auth/login'
+import {
 	type LoginParams,
 	type LoginResponse,
 	keysOfLoginResponse,
@@ -13,6 +18,7 @@ import {
 } from '@/controllers/customer/auth/register'
 import { generateId } from '@/utils'
 import { getData } from '@/utils/get-data'
+import { CustomerRole } from '@prisma/client'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
@@ -25,9 +31,13 @@ export default class AuthService {
 	 */
 	async login(loginParams: LoginParams): Promise<LoginResponse> {
 		const existingCustomer = await prisma.customer.findFirst({
-			where: { email: loginParams.email },
+			where: {
+				email: loginParams.email,
+				status: CustomerStatus.ACTIVE,
+				role: CustomerRole.customer,
+			},
 		})
-		if (!existingCustomer || existingCustomer.status !== CustomerStatus.ACTIVE) {
+		if (!existingCustomer) {
 			throw new Error('Customer not found.')
 		}
 		const isPasswordValid = await bcrypt.compare(loginParams.password, existingCustomer.password)
@@ -43,6 +53,37 @@ export default class AuthService {
 			},
 		)
 		return getData<LoginResponse>({ customer: existingCustomer, token }, keysOfLoginResponse)
+	}
+
+	/**
+	 * Login admin with email and password
+	 *
+	 * @param {LoginAdminParams} loginParams - login admin parameters
+	 * @return {Promise<LoginAdminResponse>} login admin response
+	 */
+	async loginAdmin(loginParams: LoginAdminParams): Promise<LoginAdminResponse> {
+		const existingCustomer = await prisma.customer.findFirst({
+			where: { email: loginParams.email, role: CustomerRole.admin, status: CustomerStatus.ACTIVE },
+		})
+		if (!existingCustomer) {
+			throw new Error('Customer not found.')
+		}
+		const isPasswordValid = await bcrypt.compare(loginParams.password, existingCustomer.password)
+		if (!isPasswordValid) {
+			throw new Error('Email or password incorrect.')
+		}
+		// generate jwt token
+		const token = jwt.sign(
+			{ email: existingCustomer.email, customerId: existingCustomer.id },
+			appConfig.jwt_secret,
+			{
+				expiresIn: '30days',
+			},
+		)
+		return getData<LoginAdminResponse>(
+			{ customer: existingCustomer, token },
+			keysOfLoginAdminResponse,
+		)
 	}
 
 	/**

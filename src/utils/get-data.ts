@@ -11,7 +11,7 @@ import { pick } from 'lodash'
  */
 export const getData = <K extends Record<keyof K, unknown>>(
 	object: Record<keyof K, unknown>,
-	select: Array<keyof K>,
+	select: string[],
 ): K => {
 	return pick(object, select) as K
 }
