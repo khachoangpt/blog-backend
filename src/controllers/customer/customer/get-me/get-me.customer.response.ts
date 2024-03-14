@@ -1,4 +1,5 @@
 import { CustomerStatus } from '@/constants'
+import getKeysOfNestedObject from '@/utils/get-keys-nested-object'
 
 /**
  * @swagger
@@ -53,7 +54,7 @@ const getMeResponseDummy: GetMeResponse = {
 	middle_name: '',
 	last_name: '',
 	email: '',
-	status: CustomerStatus.ACTIVE,
+	status: CustomerStatus.active,
 }
 
-export const keysOfGetMeResponse = Object.keys(getMeResponseDummy) as Array<keyof GetMeResponse>
+export const keysOfGetMeResponse = getKeysOfNestedObject(getMeResponseDummy)

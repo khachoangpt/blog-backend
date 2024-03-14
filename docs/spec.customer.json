@@ -458,10 +458,6 @@
           "updated_at": {
             "type": "string",
             "description": "Updated at"
-          },
-          "deleted_at": {
-            "type": "string",
-            "description": "Deleted at"
           }
         }
       },
@@ -471,54 +467,55 @@
           "blogs": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "description": "Id of blog"
-                },
-                "title": {
-                  "type": "string",
-                  "description": "Title of blog"
-                },
-                "summary": {
-                  "type": "string",
-                  "description": "Summary of blog"
-                },
-                "thumbnail": {
-                  "type": "string",
-                  "description": "Thumbnail of blog"
-                },
-                "content": {
-                  "type": "string",
-                  "description": "Content of blog"
-                },
-                "is_published": {
-                  "type": "boolean",
-                  "description": "Is published"
-                },
-                "published_at": {
-                  "type": "string",
-                  "description": "Published at"
-                },
-                "created_at": {
-                  "type": "string",
-                  "description": "Created at"
-                },
-                "updated_at": {
-                  "type": "string",
-                  "description": "Updated at"
-                },
-                "deleted_at": {
-                  "type": "string",
-                  "description": "Deleted at"
-                }
-              }
+              "$ref": "#/components/schemas/GetListBlogResponseBlog"
             }
           },
           "total": {
-            "type": "number",
-            "description": "Total blogs"
+            "type": "number"
+          }
+        }
+      },
+      "GetListBlogResponseBlog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of blog"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of blog"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of blog"
+          },
+          "thumbnail": {
+            "type": "string",
+            "description": "Thumbnail of blog"
+          },
+          "content": {
+            "type": "string",
+            "description": "Content of blog"
+          },
+          "is_published": {
+            "type": "boolean",
+            "description": "Is published"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Published at"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Created at"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Updated at"
           }
         }
       },
@@ -582,11 +579,6 @@
                 "updated_at": {
                   "type": "string",
                   "format": "date-time"
-                },
-                "deleted_at": {
-                  "type": "string",
-                  "format": "date-time",
-                  "nullable": true
                 }
               }
             }
@@ -602,6 +594,13 @@
           "active",
           "banned",
           "deleted"
+        ]
+      },
+      "CustomerRole": {
+        "type": "string",
+        "enum": [
+          "customer",
+          "admin"
         ]
       }
     }

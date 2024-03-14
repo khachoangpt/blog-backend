@@ -459,6 +459,13 @@
           "banned",
           "deleted"
         ]
+      },
+      "CustomerRole": {
+        "type": "string",
+        "enum": [
+          "customer",
+          "admin"
+        ]
       }
     }
   },

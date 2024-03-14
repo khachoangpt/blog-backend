@@ -1,3 +1,5 @@
+import getKeysOfNestedObject from '@/utils/get-keys-nested-object'
+
 /**
  * @swagger
  *   components:
@@ -62,6 +64,4 @@ const createBlogResponseDummy: CreateBlogResponse = {
 	deleted_at: null,
 }
 
-export const keysOfCreateBlogResponse = Object.keys(
-	createBlogResponseDummy,
-) as Array<keyof CreateBlogResponse>
+export const keysOfCreateBlogResponse = getKeysOfNestedObject(createBlogResponseDummy)

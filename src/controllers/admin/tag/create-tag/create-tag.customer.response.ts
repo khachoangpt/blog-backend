@@ -1,3 +1,5 @@
+import getKeysOfNestedObject from '@/utils/get-keys-nested-object'
+
 /**
  * @swagger
  *   components:
@@ -22,6 +24,4 @@ const createTagResponseDummy = {
 	name: 'name',
 }
 
-export const keysOfCreateTagResponse = Object.keys(
-	createTagResponseDummy,
-) as Array<keyof CreateTagResponse>
+export const keysOfCreateTagResponse = getKeysOfNestedObject(createTagResponseDummy)

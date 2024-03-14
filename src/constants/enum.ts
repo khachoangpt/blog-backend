@@ -1,6 +1,6 @@
 export enum NodeEnvEnum {
-	DEVELOPMENT = 'development',
-	PRODUCTION = 'production',
+	development = 'development',
+	production = 'production',
 }
 
 /**
@@ -15,7 +15,22 @@ export enum NodeEnvEnum {
  *           - deleted
  */
 export enum CustomerStatus {
-	ACTIVE = 'active',
-	BANNED = 'banned',
-	DELETED = 'deleted',
+	active = 'active',
+	banned = 'banned',
+	deleted = 'deleted',
+}
+
+/**
+ * @swagger
+ *   components:
+ *     schemas:
+ *       CustomerRole:
+ *         type: string
+ *         enum:
+ *           - customer
+ *           - admin
+ */
+export enum CustomerRole {
+	customer = 'customer',
+	admin = 'admin',
 }

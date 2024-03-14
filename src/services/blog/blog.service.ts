@@ -1,7 +1,17 @@
 import prisma from '@/configs/db'
 import type { CreateBlogParams, CreateBlogResponse } from '@/controllers/admin/blog/create-blog'
 import type { UpdateBlogParams } from '@/controllers/admin/blog/update-blog'
+import {
+	type GetBlogDetailResponse,
+	keysOfGetBlogDetailResponse,
+} from '@/controllers/customer/blog/get-blog-detail'
+import {
+	type GetListBlogResponse,
+	type GetListBlogResponseBlog,
+	keysOfGetListBlogResponse,
+} from '@/controllers/customer/blog/get-list-blog'
 import { generateId } from '@/utils'
+import { getData, getDataArray } from '@/utils/get-data'
 import type { Blog, Prisma } from '@prisma/client'
 import type TagService from '../tag/tag.service'
 
@@ -80,15 +90,16 @@ export default class BlogService {
 	/**
 	 * Retrieves a list of blogs based on the provided configuration.
 	 *
-	 * @param {Prisma.BlogFindManyArgs} config - The configuration for filtering and pagination.
-	 * @return {Promise<{ blogs: Blog[]; count: number }>} An object containing the list of blogs and the total count.
+	 * @param {Prisma.BlogFindManyArgs} config - The configuration for finding blogs.
+	 * @return {Promise<GetListBlogResponse>} An object containing the list of blogs and the count of blogs found.
 	 */
-	async getListBlog(config: Prisma.BlogFindManyArgs): Promise<{ blogs: Blog[]; count: number }> {
+	async getListBlog(config: Prisma.BlogFindManyArgs): Promise<GetListBlogResponse> {
 		const blogs = await prisma.blog.findMany({
 			...config,
 			where: { is_published: true },
 		})
-		return { blogs, count: blogs.length }
+		const blogsResponse = getDataArray<GetListBlogResponseBlog>(blogs, keysOfGetListBlogResponse)
+		return { blogs: blogsResponse, total: blogs.length }
 	}
 
 	/**
@@ -97,13 +108,14 @@ export default class BlogService {
 	 * @param {string} id - The ID of the blog
 	 * @return {Promise<any>} The details of the blog
 	 */
-	async getBlogDetail(id: string) {
+	async getBlogDetail(id: string): Promise<GetBlogDetailResponse> {
 		const blog = await prisma.blog.findFirst({
 			where: { id, is_published: true },
 		})
 		if (!blog) {
 			throw new Error('Blog not found')
 		}
-		return blog
+		const blogResponse = getData<GetBlogDetailResponse>(blog, keysOfGetBlogDetailResponse)
+		return blogResponse
 	}
 }

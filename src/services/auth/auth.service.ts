@@ -1,6 +1,6 @@
 import { appConfig } from '@/configs/app-config'
 import prisma from '@/configs/db'
-import { CustomerStatus } from '@/constants'
+import { CustomerRole, CustomerStatus } from '@/constants'
 import {
 	type LoginAdminParams,
 	type LoginAdminResponse,
@@ -18,7 +18,6 @@ import {
 } from '@/controllers/customer/auth/register'
 import { generateId } from '@/utils'
 import { getData } from '@/utils/get-data'
-import { CustomerRole } from '@prisma/client'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
@@ -33,7 +32,7 @@ export default class AuthService {
 		const existingCustomer = await prisma.customer.findFirst({
 			where: {
 				email: loginParams.email,
-				status: CustomerStatus.ACTIVE,
+				status: CustomerStatus.active,
 				role: CustomerRole.customer,
 			},
 		})
@@ -63,7 +62,7 @@ export default class AuthService {
 	 */
 	async loginAdmin(loginParams: LoginAdminParams): Promise<LoginAdminResponse> {
 		const existingCustomer = await prisma.customer.findFirst({
-			where: { email: loginParams.email, role: CustomerRole.admin, status: CustomerStatus.ACTIVE },
+			where: { email: loginParams.email, role: CustomerRole.admin, status: CustomerStatus.active },
 		})
 		if (!existingCustomer) {
 			throw new Error('Customer not found.')

@@ -9,7 +9,7 @@ import 'reflect-metadata'
 const bootstrap = async () => {
 	await loaders(app)
 
-	if (appConfig.env === NodeEnvEnum.DEVELOPMENT) {
+	if (appConfig.env === NodeEnvEnum.development) {
 		await generateAdminOas()
 		await generateCustomerOas()
 	}

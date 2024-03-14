@@ -1,3 +1,5 @@
+import getKeysOfNestedObject from '@/utils/get-keys-nested-object'
+
 /**
  * @swagger
  * components:
@@ -20,10 +22,6 @@
  *               updated_at:
  *                 type: string
  *                 format: date-time
- *               deleted_at:
- *                 type: string
- *                 format: date-time
- *                 nullable: true
  *         count:
  *           type: integer
  */
@@ -33,7 +31,20 @@ export type GetTagListResponse = {
 		name: string
 		created_at: Date
 		updated_at: Date
-		deleted_at: Date | null
 	}[]
 	count: number
 }
+
+const getTagListResponseDummy: GetTagListResponse = {
+	tags: [
+		{
+			id: 'id',
+			name: 'name',
+			created_at: new Date(),
+			updated_at: new Date(),
+		},
+	],
+	count: 0,
+}
+
+export const keysOfGetTagListResponse = getKeysOfNestedObject(getTagListResponseDummy)

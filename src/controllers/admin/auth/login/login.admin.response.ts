@@ -72,7 +72,7 @@ const loginAdminResponseDummy: LoginAdminResponse = {
 		middle_name: '',
 		last_name: '',
 		email: '',
-		status: CustomerStatus.ACTIVE,
+		status: CustomerStatus.active,
 	},
 	token: '',
 }
