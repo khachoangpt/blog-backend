@@ -135,6 +135,28 @@
         }
       }
     },
+    "/admin/me": {
+      "get": {
+        "summary": "Get current customer",
+        "operationId": "GetMe",
+        "description": "Get current customer",
+        "tags": [
+          "Customer"
+        ],
+        "responses": {
+          "200": {
+            "description": "Get current customer success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetMeAdminResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/customer/tag": {
       "post": {
         "summary": "Create a tag",
@@ -424,6 +446,45 @@
           "content": {
             "type": "string",
             "description": "Content of blog"
+          }
+        }
+      },
+      "GetMeAdminResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The id of the customer"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date time of customer creation"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date time of customer update"
+          },
+          "first_name": {
+            "type": "string",
+            "description": "The first name of customer"
+          },
+          "middle_name": {
+            "type": "string",
+            "description": "The middle name of customer"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "The last name of customer"
+          },
+          "email": {
+            "type": "string",
+            "description": "The email of customer"
+          },
+          "status": {
+            "$ref": "#/components/schemas/CustomerStatus",
+            "description": "The status of the customer"
           }
         }
       },

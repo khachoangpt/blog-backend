@@ -6,10 +6,7 @@ import type { Express } from 'express'
 import passport from 'passport'
 import { ExtractJwt, Strategy as JWTStrategy } from 'passport-jwt'
 
-export default async ({
-	app,
-	container,
-}: { app: Express; container: AwilixContainer }) => {
+export default async ({ app, container }: { app: Express; container: AwilixContainer }) => {
 	const customerService: CustomerService = container.resolve('customerService')
 
 	passport.use(
