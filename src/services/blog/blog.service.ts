@@ -30,9 +30,9 @@ export default class BlogService {
 	 * Create a blog using the provided parameters.
 	 *
 	 * @param {CreateBlogParams} createBlogParams - the parameters for creating the blog
-	 * @return {Promise<CreateBlogResponse>} the created blog
+	 * @return {Promise<Blog>} the created blog
 	 */
-	async createBlog(createBlogParams: CreateBlogParams): Promise<CreateBlogResponse> {
+	async createBlog(createBlogParams: CreateBlogParams): Promise<Blog> {
 		const blog = prisma.blog.create({
 			data: {
 				id: generateId('blog'),
@@ -50,9 +50,9 @@ export default class BlogService {
 	 * Updates a blog with the specified parameters.
 	 *
 	 * @param {UpdateBlogParams} blogUpdate - the parameters for updating the blog
-	 * @return {Promise<Blog | null>} the updated blog, or null if the blog is not found
+	 * @return {Promise<Blog>} the updated blog
 	 */
-	async updateBlog(blogUpdate: UpdateBlogParams): Promise<Blog | null> {
+	async updateBlog(blogUpdate: UpdateBlogParams): Promise<Blog> {
 		const { id, ...updateData } = blogUpdate
 		const blogFind = await prisma.blog.findFirst({ where: { id } })
 		if (!blogFind) {
@@ -88,34 +88,32 @@ export default class BlogService {
 	}
 
 	/**
-	 * Retrieves a list of blogs based on the provided configuration.
+	 * Get list of blog
 	 *
-	 * @param {Prisma.BlogFindManyArgs} config - The configuration for finding blogs.
-	 * @return {Promise<GetListBlogResponse>} An object containing the list of blogs and the count of blogs found.
+	 * @param {Prisma.BlogFindManyArgs} config - config
+	 * @return {Promise<{ blogs: Blog[]; total: number }>} list of blog
 	 */
-	async getListBlog(config: Prisma.BlogFindManyArgs): Promise<GetListBlogResponse> {
+	async getListBlog(config: Prisma.BlogFindManyArgs): Promise<{ blogs: Blog[]; total: number }> {
 		const blogs = await prisma.blog.findMany({
 			...config,
 			where: { is_published: true },
 		})
-		const blogsResponse = getDataArray<GetListBlogResponseBlog>(blogs, keysOfGetListBlogResponse)
-		return { blogs: blogsResponse, total: blogs.length }
+		return { blogs, total: blogs.length }
 	}
 
 	/**
-	 * Retrieves the details of a blog by its ID.
+	 * Get blog detail by id
 	 *
-	 * @param {string} id - The ID of the blog
-	 * @return {Promise<any>} The details of the blog
+	 * @param {string} id - id of blog
+	 * @return {Promise<Blog>} a blog
 	 */
-	async getBlogDetail(id: string): Promise<GetBlogDetailResponse> {
+	async getBlogDetail(id: string): Promise<Blog> {
 		const blog = await prisma.blog.findFirst({
 			where: { id, is_published: true },
 		})
 		if (!blog) {
 			throw new Error('Blog not found')
 		}
-		const blogResponse = getData<GetBlogDetailResponse>(blog, keysOfGetBlogDetailResponse)
-		return blogResponse
+		return blog
 	}
 }

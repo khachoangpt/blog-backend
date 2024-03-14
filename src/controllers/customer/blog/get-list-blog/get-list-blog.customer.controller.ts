@@ -1,5 +1,7 @@
 import type BlogService from '@/services/blog/blog.service'
+import { getData, getDataArray } from '@/utils/get-data'
 import type { Request, Response } from 'express'
+import { type GetListBlogResponseBlog, keysOfGetListBlogResponse } from '.'
 
 /**
  * @swagger
@@ -53,6 +55,11 @@ import type { Request, Response } from 'express'
  */
 export default async (req: Request, res: Response) => {
 	const blogService: BlogService = req.scope.resolve('blogService')
-	const blogs = await blogService.getListBlog(req.query)
-	res.status(200).json(blogs)
+	const { blogs, total } = await blogService.getListBlog(req.query)
+
+	const response = {
+		blogs: getDataArray<GetListBlogResponseBlog>(blogs, keysOfGetListBlogResponse),
+		total,
+	}
+	res.status(200).json(response)
 }
