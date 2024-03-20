@@ -1,4 +1,4 @@
-import path from 'path'
+import path from 'node:path'
 import type { ServiceLoaderParams } from '@/types'
 import { Lifetime, asClass } from 'awilix'
 

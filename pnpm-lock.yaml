@@ -142,12 +142,9 @@ devDependencies:
   typescript:
     specifier: ^5.4.2
     version: 5.4.2
-  vite:
-    specifier: ^5.1.6
-    version: 5.1.6(@types/node@20.11.26)
   vite-tsconfig-paths:
     specifier: ^4.3.2
-    version: 4.3.2(typescript@5.4.2)(vite@5.1.6)
+    version: 4.3.2(typescript@5.4.2)
   vitest:
     specifier: ^1.4.0
     version: 1.4.0(@types/node@20.11.26)(@vitest/ui@1.4.0)
@@ -4322,7 +4319,7 @@ packages:
       - terser
     dev: true
 
-  /vite-tsconfig-paths@4.3.2(typescript@5.4.2)(vite@5.1.6):
+  /vite-tsconfig-paths@4.3.2(typescript@5.4.2):
     resolution: {integrity: sha512-0Vd/a6po6Q+86rPlntHye7F31zA2URZMbH8M3saAZ/xR9QoGN/L21bxEGfXdWmFdNkqPpRdxFT7nmNe12e9/uA==}
     peerDependencies:
       vite: '*'
@@ -4333,7 +4330,6 @@ packages:
       debug: 4.3.4
       globrex: 0.1.2
       tsconfck: 3.0.3(typescript@5.4.2)
-      vite: 5.1.6(@types/node@20.11.26)
     transitivePeerDependencies:
       - supports-color
       - typescript

@@ -6,7 +6,7 @@
 	"scripts": {
 		"build": "rimraf ./dist && tsc && tsc-alias",
 		"start": "pnpm build && node dist/server.js",
-		"dev": "tsx watch server.ts",
+		"dev": "tsx --watch server.ts",
 		"test": "vitest",
 		"orm": "pnpm build && pnpm typeorm -d dist/src/configs/ormconfig.js",
 		"prepare": "husky"
@@ -39,7 +39,6 @@
 		"swagger-jsdoc": "^6.2.8",
 		"tsc-alias": "^1.8.8",
 		"typescript": "^5.4.2",
-		"vite": "^5.1.6",
 		"vite-tsconfig-paths": "^4.3.2",
 		"vitest": "^1.4.0",
 		"vitest-mock-extended": "^1.3.1"
