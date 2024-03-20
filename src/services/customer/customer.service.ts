@@ -1,5 +1,5 @@
+import prisma from '@/configs/prisma'
 import type { Customer, Prisma } from '@prisma/client'
-import prisma from '../../configs/prisma'
 
 export default class CustomerService {
 	/**
@@ -13,7 +13,7 @@ export default class CustomerService {
 		if (!customerId) throw new Error('Customer id is required')
 		const customer = await prisma.customer.findFirst(options)
 		if (!customer) {
-			throw new Error('Customer not found')
+			throw new Error('Customer not found.')
 		}
 		return customer
 	}
