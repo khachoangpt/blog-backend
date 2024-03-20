@@ -1,7 +1,6 @@
 {
 	"compilerOptions": {
 		"target": "ES6",
-		"experimentalDecorators": true,
 		"module": "NodeNext",
 		"paths": {
 			"@/*": ["./src/*"]
@@ -12,8 +11,7 @@
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
 		"strictPropertyInitialization": false,
-		"skipLibCheck": true,
-		"emitDecoratorMetadata": true
+		"skipLibCheck": true
 	},
 	"files": ["src/type.d.ts"],
 	"include": ["./src/**/*", "./server.ts"]

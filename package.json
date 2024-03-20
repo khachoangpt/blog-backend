@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"build": "rimraf ./dist && tsc && tsc-alias",
+		"build": "rimraf ./dist && tsc --build tsx.tsconfig.json && tsc-alias",
 		"start": "pnpm build && node dist/server.js",
 		"dev": "tsx --watch server.ts",
 		"test": "vitest",
@@ -35,7 +35,6 @@
 		"lint-staged": "^15.2.2",
 		"morgan": "^1.10.0",
 		"prisma": "^5.11.0",
-		"reflect-metadata": "^0.2.1",
 		"swagger-jsdoc": "^6.2.8",
 		"tsc-alias": "^1.8.8",
 		"typescript": "^5.4.2",

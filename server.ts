@@ -4,7 +4,6 @@ import { logger } from '@/configs/logger'
 import { NodeEnvEnum } from '@/constants'
 import loaders from '@/loaders'
 import { generateAdminOas, generateCustomerOas } from '@/utils/generate-oas'
-import 'reflect-metadata'
 
 const bootstrap = async () => {
 	await loaders(app)
