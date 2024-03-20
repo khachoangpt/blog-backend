@@ -51,6 +51,7 @@ describe('AuthService', () => {
 				getData<LoginAdminResponse>({ customer: customerMock, token: '' }, keysOfLoginResponse)
 					.customer,
 			)
+			expect(loginAdminResponse.token).toBeDefined()
 		})
 		test('customer not found', async () => {
 			const authService: AuthService = new AuthService()
