@@ -10,7 +10,7 @@ describe('CustomerService', () => {
 		test('customer id not include in parameters', async () => {
 			const customerService: CustomerService = new CustomerService()
 			expect(async () => await customerService.retrieve({})).rejects.toThrowError(
-				'Customer id is required',
+				new Error('Customer id is required'),
 			)
 		})
 		test('retrieve customer not found', async () => {
@@ -18,7 +18,7 @@ describe('CustomerService', () => {
 			prisma.customer.findFirst.mockResolvedValue(null)
 			expect(
 				async () => await customerService.retrieve({ where: { id: '1' } }),
-			).rejects.toThrowError('Customer not found.')
+			).rejects.toThrowError(new Error('Customer not found.'))
 		})
 		test('retrieve customer success', async () => {
 			prisma.customer.findFirst.mockResolvedValue(customerMock)
