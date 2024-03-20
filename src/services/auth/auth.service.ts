@@ -1,5 +1,5 @@
 import { appConfig } from '@/configs/app-config'
-import prisma from '@/configs/db'
+import prisma from '@/configs/prisma'
 import { CustomerRole, CustomerStatus } from '@/constants'
 import {
 	type LoginAdminParams,

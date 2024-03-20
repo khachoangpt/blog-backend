@@ -1,8 +1,14 @@
-import prisma from '@/configs/db'
-import type { Prisma } from '@prisma/client'
+import type { Customer, Prisma } from '@prisma/client'
+import prisma from '../../configs/prisma'
 
 export default class CustomerService {
-	async retrieve(options: Prisma.CustomerFindFirstArgs) {
+	/**
+	 * Retrieves a customer from the database based on the provided options.
+	 *
+	 * @param {Prisma.CustomerFindFirstArgs} options - The options used to query the database for the customer.
+	 * @return {Promise<Customer>} The retrieved customer.
+	 */
+	async retrieve(options: Prisma.CustomerFindFirstArgs): Promise<Customer> {
 		const customerId = options.where?.id
 		if (!customerId) throw new Error('Customer id is required')
 		const customer = await prisma.customer.findFirst(options)

@@ -1,17 +1,7 @@
-import prisma from '@/configs/db'
-import type { CreateBlogParams, CreateBlogResponse } from '@/controllers/admin/blog/create-blog'
+import prisma from '@/configs/prisma'
+import type { CreateBlogParams } from '@/controllers/admin/blog/create-blog'
 import type { UpdateBlogParams } from '@/controllers/admin/blog/update-blog'
-import {
-	type GetBlogDetailResponse,
-	keysOfGetBlogDetailResponse,
-} from '@/controllers/customer/blog/get-blog-detail'
-import {
-	type GetListBlogResponse,
-	type GetListBlogResponseBlog,
-	keysOfGetListBlogResponse,
-} from '@/controllers/customer/blog/get-list-blog'
 import { generateId } from '@/utils'
-import { getData, getDataArray } from '@/utils/get-data'
 import type { Blog, Prisma } from '@prisma/client'
 import type TagService from '../tag/tag.service'
 

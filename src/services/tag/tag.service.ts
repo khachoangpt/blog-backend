@@ -1,4 +1,4 @@
-import prisma from '@/configs/db'
+import prisma from '@/configs/prisma'
 import type { CreateTagParams, CreateTagResponse } from '@/controllers/admin/tag/create-tag'
 import type { GetTagListResponse } from '@/controllers/customer/tag/get-tag-list'
 import { generateId } from '@/utils'
