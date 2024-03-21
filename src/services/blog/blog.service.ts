@@ -23,7 +23,7 @@ export default class BlogService {
 	 * @return {Promise<Blog>} the created blog
 	 */
 	async createBlog(createBlogParams: CreateBlogParams): Promise<Blog> {
-		const blog = prisma.blog.create({
+		const blog = await prisma.blog.create({
 			data: {
 				id: generateId('blog'),
 				content: createBlogParams.content ?? '',
