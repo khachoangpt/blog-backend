@@ -2,10 +2,10 @@ import prisma from '@/configs/__mocks__/prisma'
 import type { LoginAdminResponse } from '@/controllers/admin/auth/login'
 import { type LoginResponse, keysOfLoginResponse } from '@/controllers/customer/auth/login'
 import { type RegisterResponse, keysOfRegisterResponse } from '@/controllers/customer/auth/register'
-import { customerMock } from '@/services/customer/__mocks__/customer.mock'
 import { getData } from '@/utils/get-data'
 import { describe, expect, test, vi } from 'vitest'
-import AuthService from '../auth.service'
+import { customerMock } from '../__mocks__/customer.mock'
+import AuthService from '../auth/auth.service'
 
 vi.mock('@/configs/prisma.ts')
 

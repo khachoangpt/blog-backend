@@ -32,7 +32,7 @@ export type GetTagListResponse = {
 		created_at: Date
 		updated_at: Date
 	}[]
-	count: number
+	total: number
 }
 
 const getTagListResponseDummy: GetTagListResponse = {
@@ -44,7 +44,7 @@ const getTagListResponseDummy: GetTagListResponse = {
 			updated_at: new Date(),
 		},
 	],
-	count: 0,
+	total: 0,
 }
 
 export const keysOfGetTagListResponse = getKeysOfNestedObject(getTagListResponseDummy)

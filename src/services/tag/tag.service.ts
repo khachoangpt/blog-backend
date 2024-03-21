@@ -29,10 +29,10 @@ export default class TagService {
 	 * Retrieves a list of tags based on the provided configuration.
 	 *
 	 * @param {Prisma.TagFindManyArgs} config - The configuration for finding tags.
-	 * @return {Promise<GetTagListResponse>} An object containing the list of tags and the count of tags found.
+	 * @return {Promise<GetTagListResponse>} An object containing the list of tags and the total of tags found.
 	 */
 	async getTagList(config: Prisma.TagFindManyArgs): Promise<GetTagListResponse> {
 		const tagsFind = await prisma.tag.findMany(config)
-		return { tags: tagsFind, count: tagsFind.length }
+		return { tags: tagsFind, total: tagsFind.length }
 	}
 }
