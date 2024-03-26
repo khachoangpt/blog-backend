@@ -82,13 +82,17 @@ const convertOasForNextJs = (oas: any, type: 'customer' | 'admin'): void => {
 		method.parameters = [
 			{
 				in: 'path',
-				name: 'next',
+				name: 'cache',
 				description: 'Next.js option',
 				schema: {
 					type: 'object',
 					properties: {
 						revalidate: {
 							type: 'number',
+						},
+						type: {
+							type: 'string',
+							enum: ['default', 'force-cache', 'no-cache', 'no-store', 'only-if-cached', 'reload'],
 						},
 						tags: {
 							type: 'array',
@@ -97,16 +101,6 @@ const convertOasForNextJs = (oas: any, type: 'customer' | 'admin'): void => {
 							},
 						},
 					},
-				},
-				required: false,
-			},
-			{
-				in: 'path',
-				name: 'cache',
-				description: 'Next.js option',
-				schema: {
-					type: 'string',
-					enum: ['default', 'force-cache', 'no-cache', 'no-store', 'only-if-cached', 'reload'],
 				},
 				required: false,
 			},
