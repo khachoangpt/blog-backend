@@ -1,0 +1,729 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Shop Admin",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000/v1/api",
+      "description": "Development server"
+    }
+  ],
+  "paths": {
+    "/admin/auth/login": {
+      "post": {
+        "summary": "Login admin",
+        "operationId": "Login",
+        "description": "Login admin",
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginAdminParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Login admin response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginAdminResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "next",
+          "description": "Next.js option",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "revalidate": {
+                "type": "number"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        {
+          "in": "path",
+          "name": "cache",
+          "description": "Next.js option",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "default",
+              "force-cache",
+              "no-cache",
+              "no-store",
+              "only-if-cached",
+              "reload"
+            ]
+          },
+          "required": false
+        }
+      ]
+    },
+    "/customer/blog": {
+      "post": {
+        "summary": "Create a blog",
+        "operationId": "CreateBlog",
+        "description": "Create a blog",
+        "tags": [
+          "Blog"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBlogParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "A blog",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateBlogResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a blog",
+        "operationId": "UpdateBlog",
+        "description": "Update a blog",
+        "tags": [
+          "Blog"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBlogParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "A blog",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateBlogResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "next",
+          "description": "Next.js option",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "revalidate": {
+                "type": "number"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        {
+          "in": "path",
+          "name": "cache",
+          "description": "Next.js option",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "default",
+              "force-cache",
+              "no-cache",
+              "no-store",
+              "only-if-cached",
+              "reload"
+            ]
+          },
+          "required": false
+        }
+      ]
+    },
+    "/customer/blog/{id}": {
+      "patch": {
+        "summary": "Publish blog",
+        "operationId": "PublishBlog",
+        "description": "Publish blog",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Id of blog",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "tags": [
+          "Blog"
+        ],
+        "responses": {
+          "200": {
+            "description": "A blog",
+            "content": {
+              "application": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublishBlogResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "next",
+          "description": "Next.js option",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "revalidate": {
+                "type": "number"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        {
+          "in": "path",
+          "name": "cache",
+          "description": "Next.js option",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "default",
+              "force-cache",
+              "no-cache",
+              "no-store",
+              "only-if-cached",
+              "reload"
+            ]
+          },
+          "required": false
+        }
+      ]
+    },
+    "/admin/me": {
+      "get": {
+        "summary": "Get current customer",
+        "operationId": "GetMe",
+        "description": "Get current customer",
+        "tags": [
+          "Customer"
+        ],
+        "responses": {
+          "200": {
+            "description": "Get current customer success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetMeAdminResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "next",
+          "description": "Next.js option",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "revalidate": {
+                "type": "number"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        {
+          "in": "path",
+          "name": "cache",
+          "description": "Next.js option",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "default",
+              "force-cache",
+              "no-cache",
+              "no-store",
+              "only-if-cached",
+              "reload"
+            ]
+          },
+          "required": false
+        }
+      ]
+    },
+    "/customer/tag": {
+      "post": {
+        "summary": "Create a tag",
+        "operationId": "CreateTag",
+        "description": "Create a tag",
+        "tags": [
+          "Tag"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTagParams"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "A tag",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTagResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "next",
+          "description": "Next.js option",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "revalidate": {
+                "type": "number"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        {
+          "in": "path",
+          "name": "cache",
+          "description": "Next.js option",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "default",
+              "force-cache",
+              "no-cache",
+              "no-store",
+              "only-if-cached",
+              "reload"
+            ]
+          },
+          "required": false
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "LoginAdminResponse": {
+        "type": "object",
+        "properties": {
+          "customer": {
+            "$ref": "#/components/schemas/LoginAdminResponseCustomer"
+          },
+          "token": {
+            "type": "string",
+            "description": "Token of customer"
+          }
+        }
+      },
+      "LoginAdminResponseCustomer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of customer"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Created at of customer"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Updated at of customer"
+          },
+          "first_name": {
+            "type": "string",
+            "description": "First name of customer"
+          },
+          "middle_name": {
+            "type": "string",
+            "description": "Middle name of customer"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "Last name of customer"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email of customer"
+          },
+          "status": {
+            "$ref": "#/components/schemas/CustomerStatus"
+          }
+        }
+      },
+      "LoginAdminParams": {
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Email of customer"
+          },
+          "password": {
+            "type": "string",
+            "description": "Password of customer"
+          }
+        }
+      },
+      "CreateBlogResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of blog"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of blog"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of blog"
+          },
+          "thumbnail": {
+            "type": "string",
+            "description": "Thumbnail of blog"
+          },
+          "content": {
+            "type": "string",
+            "description": "Content of blog"
+          },
+          "is_published": {
+            "type": "boolean",
+            "description": "Is published"
+          },
+          "published_at": {
+            "type": "string",
+            "description": "Published at"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Created at"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Updated at"
+          },
+          "deleted_at": {
+            "type": "string",
+            "description": "Deleted at"
+          }
+        }
+      },
+      "CreateBlogParams": {
+        "type": "object",
+        "required": [
+          "title"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title of blog"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of blog"
+          },
+          "thumbnail": {
+            "type": "string",
+            "description": "Thumbnail of blog"
+          },
+          "content": {
+            "type": "string",
+            "description": "Content of blog"
+          }
+        }
+      },
+      "PublishBlogResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of blog"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of blog"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of blog"
+          },
+          "thumbnail": {
+            "type": "string",
+            "description": "Thumbnail of blog"
+          },
+          "content": {
+            "type": "string",
+            "description": "Content of blog"
+          },
+          "is_published": {
+            "type": "boolean",
+            "description": "Is blog published"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Published at of blog"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Created at of blog"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Updated at of blog"
+          }
+        }
+      },
+      "UpdateBlogResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of blog"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of blog"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of blog"
+          },
+          "thumbnail": {
+            "type": "string",
+            "description": "Thumbnail of blog"
+          },
+          "content": {
+            "type": "string",
+            "description": "Content of blog"
+          },
+          "is_published": {
+            "type": "boolean",
+            "description": "True if blog is published"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date when blog is published"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date when blog is created"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date when blog is updated"
+          },
+          "deleted_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date when blog is deleted"
+          }
+        }
+      },
+      "UpdateBlogParams": {
+        "type": "object",
+        "required": [
+          "id",
+          "title"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of blog"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of blog"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of blog"
+          },
+          "thumbnail": {
+            "type": "string",
+            "description": "Thumbnail of blog"
+          },
+          "content": {
+            "type": "string",
+            "description": "Content of blog"
+          }
+        }
+      },
+      "GetMeAdminResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The id of the customer"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date time of customer creation"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date time of customer update"
+          },
+          "first_name": {
+            "type": "string",
+            "description": "The first name of customer"
+          },
+          "middle_name": {
+            "type": "string",
+            "description": "The middle name of customer"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "The last name of customer"
+          },
+          "email": {
+            "type": "string",
+            "description": "The email of customer"
+          },
+          "status": {
+            "$ref": "#/components/schemas/CustomerStatus",
+            "description": "The status of the customer"
+          }
+        }
+      },
+      "CreateTagResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of tag"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of tag"
+          }
+        }
+      },
+      "CreateTagParams": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of tag"
+          }
+        }
+      },
+      "CustomerStatus": {
+        "type": "string",
+        "enum": [
+          "active",
+          "banned",
+          "deleted"
+        ]
+      },
+      "CustomerRole": {
+        "type": "string",
+        "enum": [
+          "customer",
+          "admin"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
