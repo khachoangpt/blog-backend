@@ -1,10 +1,9 @@
 import type TagService from '@/services/tag/tag.service'
 import { validator } from '@/utils'
+import { getData } from '@/utils/get-data'
 import type { Request, Response } from 'express'
-import {
-	type CreateTagParams,
-	createTagSchema,
-} from './create-tag.customer.schema'
+import { type CreateTagResponse, keysOfCreateTagResponse } from '.'
+import { type CreateTagParams, createTagSchema } from './create-tag.customer.schema'
 
 /**
  * @swagger
@@ -32,5 +31,6 @@ export default async (req: Request, res: Response) => {
 	const validated = await validator<CreateTagParams>(createTagSchema, req.body)
 	const tagService: TagService = req.scope.resolve('tagService')
 	const tag = await tagService.createTag(validated)
-	res.status(201).json(tag)
+	const createTagResponse = getData<CreateTagResponse>(tag, keysOfCreateTagResponse)
+	res.status(201).json(createTagResponse)
 }

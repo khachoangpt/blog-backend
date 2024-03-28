@@ -1,10 +1,9 @@
 import type BlogService from '@/services/blog/blog.service'
 import { validator } from '@/utils'
+import { getData } from '@/utils/get-data'
 import type { Request, Response } from 'express'
-import {
-	type UpdateBlogParams,
-	updateBlogSchema,
-} from './update-blog.customer.schema'
+import { type UpdateBlogResponse, keysOfUpdateBlogResponse } from '.'
+import { type UpdateBlogParams, updateBlogSchema } from './update-blog.customer.schema'
 
 /**
  * @swagger
@@ -34,5 +33,6 @@ export default async (req: Request, res: Response) => {
 		...req.body,
 	})
 	const blogUpdated = await blogService.updateBlog(validated)
-	res.status(200).json(blogUpdated)
+	const updateBlogResponse = getData<UpdateBlogResponse>(blogUpdated, keysOfUpdateBlogResponse)
+	res.status(200).json(updateBlogResponse)
 }
