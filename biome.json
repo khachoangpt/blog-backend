@@ -28,9 +28,6 @@
 			},
 			"style": {
 				"useImportType": "error"
-			},
-			"performance": {
-				"noAccumulatingSpread": "off"
 			}
 		}
 	}

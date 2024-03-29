@@ -11,12 +11,15 @@ const getKeysOfNestedObject = (obj: object): Array<string> => {
 		(acc, key) => {
 			const value = obj[key as keyof typeof obj]
 			if ((value as Date) instanceof Date) {
-				return [...acc, key]
+				acc.push(key)
+				return acc
 			}
 			if (typeof value === 'object' && value !== null) {
-				return [...acc, ...getKeysOfNestedObject(value).map((nestedKey) => `${key}.${nestedKey}`)]
+				acc.push(...getKeysOfNestedObject(value).map((nestedKey) => `${key}.${nestedKey}`))
+				return acc
 			}
-			return [...acc, key]
+			acc.push(key)
+			return acc
 		},
 		[] as Array<string>,
 	)

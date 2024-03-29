@@ -83,10 +83,14 @@ export default class BlogService {
 	 * @param {Prisma.BlogFindManyArgs} config - config
 	 * @return {Promise<{ blogs: Blog[]; total: number }>} list of blog
 	 */
-	async getListBlog(config: Prisma.BlogFindManyArgs): Promise<{ blogs: Blog[]; total: number }> {
+	async getListBlog(
+		config: Prisma.BlogFindManyArgs,
+		select?: Prisma.BlogSelect,
+	): Promise<{ blogs: Blog[]; total: number }> {
 		const blogs = await prisma.blog.findMany({
 			...config,
 			where: { is_published: true },
+			select,
 		})
 		return { blogs, total: blogs.length }
 	}
@@ -97,9 +101,10 @@ export default class BlogService {
 	 * @param {string} id - id of blog
 	 * @return {Promise<Blog>} a blog
 	 */
-	async getBlogDetail(id: string): Promise<Blog> {
+	async getBlogDetail(id: string, select?: Prisma.BlogSelect): Promise<Blog> {
 		const blog = await prisma.blog.findFirst({
 			where: { id, is_published: true },
+			select,
 		})
 		if (!blog) {
 			throw new Error('Blog not found')
