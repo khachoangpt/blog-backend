@@ -13,12 +13,8 @@ const bootstrap = async () => {
 		await generateCustomerOas()
 	}
 
-	const server = app.listen(appConfig.port, () => {
+	app.listen(appConfig.port, () => {
 		logger.info(`Server listening on port ${appConfig.port}`)
-	})
-
-	process.on('SIGINT', () => {
-		server.close(() => logger.warn('Exit Server!'))
 	})
 }
 
