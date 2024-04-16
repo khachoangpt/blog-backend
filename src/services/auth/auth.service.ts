@@ -1,6 +1,6 @@
 import { appConfig } from '@/configs/app-config'
 import prisma from '@/configs/prisma'
-import { CustomerRole, CustomerStatus } from '@/constants'
+import { CustomerRole, CustomerStatus, ErrorMessages } from '@/constants'
 import {
 	type LoginAdminParams,
 	type LoginAdminResponse,
@@ -37,11 +37,11 @@ export default class AuthService {
 			},
 		})
 		if (!existingCustomer) {
-			throw new Error('Customer not found.')
+			throw new Error(ErrorMessages.CUSTOMER_NOT_FOUND)
 		}
 		const isPasswordValid = await bcrypt.compare(loginParams.password, existingCustomer.password)
 		if (!isPasswordValid) {
-			throw new Error('Email or password incorrect.')
+			throw new Error(ErrorMessages.EMAIL_OR_PASSWORD_INCORRECT)
 		}
 		// generate jwt token
 		const token = jwt.sign(
@@ -65,11 +65,11 @@ export default class AuthService {
 			where: { email: loginParams.email, role: CustomerRole.admin, status: CustomerStatus.active },
 		})
 		if (!existingCustomer) {
-			throw new Error('Customer not found.')
+			throw new Error(ErrorMessages.CUSTOMER_NOT_FOUND)
 		}
 		const isPasswordValid = await bcrypt.compare(loginParams.password, existingCustomer.password)
 		if (!isPasswordValid) {
-			throw new Error('Email or password incorrect.')
+			throw new Error(ErrorMessages.EMAIL_OR_PASSWORD_INCORRECT)
 		}
 		// generate jwt token
 		const token = jwt.sign(

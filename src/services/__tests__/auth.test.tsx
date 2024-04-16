@@ -1,4 +1,5 @@
 import prisma from '@/configs/__mocks__/prisma'
+import { ErrorMessages } from '@/constants'
 import type { LoginAdminResponse } from '@/controllers/admin/auth/login'
 import { type LoginResponse, keysOfLoginResponse } from '@/controllers/customer/auth/login'
 import { type RegisterResponse, keysOfRegisterResponse } from '@/controllers/customer/auth/register'
@@ -27,7 +28,7 @@ describe('AuthService', () => {
 			prisma.customer.findFirst.mockResolvedValue(null)
 			expect(
 				async () => await authService.login({ email: 'email@example.com', password: 'password' }),
-			).rejects.toThrowError(new Error('Customer not found.'))
+			).rejects.toThrowError(new Error(ErrorMessages.CUSTOMER_NOT_FOUND))
 		})
 		test('password is incorrect', async () => {
 			const authService: AuthService = new AuthService()
@@ -35,7 +36,7 @@ describe('AuthService', () => {
 			expect(
 				async () =>
 					await authService.login({ email: 'email@example.com', password: 'wrong_password' }),
-			).rejects.toThrowError(new Error('Email or password incorrect.'))
+			).rejects.toThrowError(new Error(ErrorMessages.EMAIL_OR_PASSWORD_INCORRECT))
 		})
 	})
 
@@ -58,7 +59,7 @@ describe('AuthService', () => {
 			prisma.customer.findFirst.mockResolvedValue(null)
 			expect(
 				async () => await authService.login({ email: 'email@example.com', password: 'password' }),
-			).rejects.toThrowError(new Error('Customer not found.'))
+			).rejects.toThrowError(new Error(ErrorMessages.CUSTOMER_NOT_FOUND))
 		})
 		test('password is incorrect', async () => {
 			const authService: AuthService = new AuthService()
@@ -66,7 +67,7 @@ describe('AuthService', () => {
 			expect(
 				async () =>
 					await authService.login({ email: 'email@example.com', password: 'wrong_password' }),
-			).rejects.toThrowError(new Error('Email or password incorrect.'))
+			).rejects.toThrowError(new Error(ErrorMessages.EMAIL_OR_PASSWORD_INCORRECT))
 		})
 	})
 

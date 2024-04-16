@@ -34,3 +34,18 @@ export enum CustomerRole {
 	customer = 'customer',
 	admin = 'admin',
 }
+
+/**
+ * @swagger
+ *   components:
+ *     schemas:
+ *       ErrorMessages:
+ *         type: string
+ *         enum:
+ *           - Customer not found
+ *           - Email or password incorrect
+ */
+export enum ErrorMessages {
+	CUSTOMER_NOT_FOUND = 'Customer not found',
+	EMAIL_OR_PASSWORD_INCORRECT = 'Email or password incorrect',
+}

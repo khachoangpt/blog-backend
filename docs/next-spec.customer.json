@@ -800,6 +800,13 @@
           "customer",
           "admin"
         ]
+      },
+      "ErrorMessages": {
+        "type": "string",
+        "enum": [
+          "Customer not found",
+          "Email or password incorrect"
+        ]
       }
     }
   },
