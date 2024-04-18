@@ -7,7 +7,7 @@ import morgan from 'morgan'
 const app = express()
 
 app.use(helmet())
-app.use(cors())
+app.use(cors({ origin: 'https://google.com' }))
 app.use(compression())
 app.use(morgan('combined'))
 app.use(urlencoded({ extended: false }))
