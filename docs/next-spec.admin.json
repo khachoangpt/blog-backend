@@ -47,29 +47,7 @@
           "name": "cache",
           "description": "Next.js option",
           "schema": {
-            "type": "object",
-            "properties": {
-              "revalidate": {
-                "type": "number"
-              },
-              "type": {
-                "type": "string",
-                "enum": [
-                  "default",
-                  "force-cache",
-                  "no-cache",
-                  "no-store",
-                  "only-if-cached",
-                  "reload"
-                ]
-              },
-              "tags": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/schemas/NextJsOptions"
           },
           "required": false
         }
@@ -140,29 +118,7 @@
           "name": "cache",
           "description": "Next.js option",
           "schema": {
-            "type": "object",
-            "properties": {
-              "revalidate": {
-                "type": "number"
-              },
-              "type": {
-                "type": "string",
-                "enum": [
-                  "default",
-                  "force-cache",
-                  "no-cache",
-                  "no-store",
-                  "only-if-cached",
-                  "reload"
-                ]
-              },
-              "tags": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/schemas/NextJsOptions"
           },
           "required": false
         }
@@ -206,29 +162,7 @@
           "name": "cache",
           "description": "Next.js option",
           "schema": {
-            "type": "object",
-            "properties": {
-              "revalidate": {
-                "type": "number"
-              },
-              "type": {
-                "type": "string",
-                "enum": [
-                  "default",
-                  "force-cache",
-                  "no-cache",
-                  "no-store",
-                  "only-if-cached",
-                  "reload"
-                ]
-              },
-              "tags": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/schemas/NextJsOptions"
           },
           "required": false
         }
@@ -261,29 +195,7 @@
           "name": "cache",
           "description": "Next.js option",
           "schema": {
-            "type": "object",
-            "properties": {
-              "revalidate": {
-                "type": "number"
-              },
-              "type": {
-                "type": "string",
-                "enum": [
-                  "default",
-                  "force-cache",
-                  "no-cache",
-                  "no-store",
-                  "only-if-cached",
-                  "reload"
-                ]
-              },
-              "tags": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/schemas/NextJsOptions"
           },
           "required": false
         }
@@ -325,29 +237,7 @@
           "name": "cache",
           "description": "Next.js option",
           "schema": {
-            "type": "object",
-            "properties": {
-              "revalidate": {
-                "type": "number"
-              },
-              "type": {
-                "type": "string",
-                "enum": [
-                  "default",
-                  "force-cache",
-                  "no-cache",
-                  "no-store",
-                  "only-if-cached",
-                  "reload"
-                ]
-              },
-              "tags": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            }
+            "$ref": "#/components/schemas/NextJsOptions"
           },
           "required": false
         }
@@ -699,6 +589,34 @@
           "Customer not found",
           "Email or password incorrect"
         ]
+      },
+      "NextJsOptions": {
+        "type": "object",
+        "properties": {
+          "revalidate": {
+            "type": "number",
+            "description": "Revalidate time in seconds"
+          },
+          "type": {
+            "type": "string",
+            "description": "Cache type",
+            "enum": [
+              "default",
+              "force-cache",
+              "no-cache",
+              "no-store",
+              "only-if-cached",
+              "reload"
+            ]
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Cache tags"
+          }
+        }
       }
     }
   },

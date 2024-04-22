@@ -85,22 +85,7 @@ const convertOasForNextJs = (oas: any, type: 'customer' | 'admin'): void => {
 				name: 'cache',
 				description: 'Next.js option',
 				schema: {
-					type: 'object',
-					properties: {
-						revalidate: {
-							type: 'number',
-						},
-						type: {
-							type: 'string',
-							enum: ['default', 'force-cache', 'no-cache', 'no-store', 'only-if-cached', 'reload'],
-						},
-						tags: {
-							type: 'array',
-							items: {
-								type: 'string',
-							},
-						},
-					},
+					$ref: '#/components/schemas/NextJsOptions',
 				},
 				required: false,
 			},

@@ -49,3 +49,30 @@ export enum ErrorMessages {
 	CUSTOMER_NOT_FOUND = 'Customer not found',
 	EMAIL_OR_PASSWORD_INCORRECT = 'Email or password incorrect',
 }
+
+/**
+ * @swagger
+ *   components:
+ *     schemas:
+ *       NextJsOptions:
+ *         type: object
+ *         properties:
+ *           revalidate:
+ *             type: number
+ *             description: Revalidate time in seconds
+ *           type:
+ *             type: string
+ *             description: Cache type
+ *             enum:
+ *               - default
+ *               - force-cache
+ *               - no-cache
+ *               - no-store
+ *               - only-if-cached
+ *               - reload
+ *           tags:
+ *             type: array
+ *             items:
+ *               type: string
+ *             description: Cache tags
+ */
