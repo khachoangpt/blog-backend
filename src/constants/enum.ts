@@ -54,6 +54,22 @@ export enum ErrorMessages {
  * @swagger
  *   components:
  *     schemas:
+ *       CacheType:
+ *         type: string
+ *         enum:
+ *           - default
+ *           - force-cache
+ *           - no-cache
+ *           - no-store
+ *           - only-if-cached
+ *           - reload
+ *         description: Cache type
+ */
+
+/**
+ * @swagger
+ *   components:
+ *     schemas:
  *       NextJsOptions:
  *         type: object
  *         properties:
@@ -61,15 +77,7 @@ export enum ErrorMessages {
  *             type: number
  *             description: Revalidate time in seconds
  *           type:
- *             type: string
- *             description: Cache type
- *             enum:
- *               - default
- *               - force-cache
- *               - no-cache
- *               - no-store
- *               - only-if-cached
- *               - reload
+ *             $ref: '#/components/schemas/CacheType'
  *           tags:
  *             type: array
  *             items:
