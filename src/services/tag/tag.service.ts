@@ -1,3 +1,4 @@
+import { Errors } from '@/base/errors'
 import prisma from '@/configs/prisma'
 import type { CreateTagParams, CreateTagResponse } from '@/controllers/admin/tag/create-tag'
 import type { GetTagListResponse } from '@/controllers/customer/tag/get-tag-list'
@@ -17,7 +18,7 @@ export default class TagService {
 			select: { id: true },
 		})
 		if (existingTag) {
-			throw new Error('Tag is already exist')
+			throw new Errors.Conflict('Tag is already exist')
 		}
 		const tag = await prisma.tag.create({
 			data: { name: createTagParams.name, id: generateId('tag') },

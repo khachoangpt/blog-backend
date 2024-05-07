@@ -1,3 +1,4 @@
+import { Errors } from '@/base/errors'
 import { appConfig } from '@/configs/app-config'
 import { logger } from '@/configs/logger'
 import { type Job, Queue, Worker } from 'bullmq'
@@ -43,7 +44,7 @@ class JobSchedulerService {
 
 	protected registerHandler(event: string, handler: ScheduledJobHandler): void {
 		if (typeof handler !== 'function') {
-			throw new Error('Handler must be a function')
+			throw new Errors.Conflict('Handler must be a function')
 		}
 
 		const handlers = this.handlers.get(event) ?? []

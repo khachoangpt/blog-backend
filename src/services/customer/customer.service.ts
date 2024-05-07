@@ -1,3 +1,4 @@
+import { Errors } from '@/base/errors'
 import prisma from '@/configs/prisma'
 import type { Customer, Prisma } from '@prisma/client'
 
@@ -10,10 +11,10 @@ export default class CustomerService {
 	 */
 	async retrieve(options: Prisma.CustomerFindFirstArgs): Promise<Customer> {
 		const customerId = options.where?.id
-		if (!customerId) throw new Error('Customer id is required')
+		if (!customerId) throw new Errors.NotFound('Customer id is required')
 		const customer = await prisma.customer.findFirst(options)
 		if (!customer) {
-			throw new Error('Customer not found.')
+			throw new Errors.NotFound('Customer not found.')
 		}
 		return customer
 	}

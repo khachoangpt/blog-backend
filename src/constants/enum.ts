@@ -44,10 +44,12 @@ export enum CustomerRole {
  *         enum:
  *           - Customer not found
  *           - Email or password incorrect
+ *           - Blog not found
  */
 export enum ErrorMessages {
 	CUSTOMER_NOT_FOUND = 'Customer not found',
 	EMAIL_OR_PASSWORD_INCORRECT = 'Email or password incorrect',
+	BLOG_NOT_FOUND = 'Blog not found',
 }
 
 /**

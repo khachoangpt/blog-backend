@@ -607,7 +607,8 @@
         "type": "string",
         "enum": [
           "Customer not found",
-          "Email or password incorrect"
+          "Email or password incorrect",
+          "Blog not found"
         ]
       },
       "CacheType": {

@@ -1,4 +1,6 @@
+import { Errors } from '@/base/errors'
 import prisma from '@/configs/prisma'
+import { ErrorMessages } from '@/constants'
 import type { CreateBlogParams } from '@/controllers/admin/blog/create-blog'
 import type { UpdateBlogParams } from '@/controllers/admin/blog/update-blog'
 import { generateId } from '@/utils'
@@ -46,7 +48,7 @@ export default class BlogService {
 		const { id, ...updateData } = blogUpdate
 		const blogFind = await prisma.blog.findFirst({ where: { id } })
 		if (!blogFind) {
-			throw new Error('Blog not found')
+			throw new Errors.NotFound(ErrorMessages.BLOG_NOT_FOUND)
 		}
 		const blog = await prisma.blog.update({ where: { id }, data: updateData })
 		return blog
@@ -61,11 +63,11 @@ export default class BlogService {
 	async publishBlog(id: string): Promise<Blog> {
 		const blogFind = await prisma.blog.findFirst({ where: { id } })
 		if (!blogFind) {
-			throw new Error('Blog not found.')
+			throw new Errors.NotFound(ErrorMessages.BLOG_NOT_FOUND)
 		}
 		// check blog is already published
 		if (blogFind.is_published === true) {
-			throw new Error('Blog is already published.')
+			throw new Errors.Conflict('Blog is already published.')
 		}
 		const blog = await prisma.blog.update({
 			where: { id },
@@ -107,7 +109,7 @@ export default class BlogService {
 			select,
 		})
 		if (!blog) {
-			throw new Error('Blog not found')
+			throw new Errors.NotFound(ErrorMessages.BLOG_NOT_FOUND)
 		}
 		return blog
 	}

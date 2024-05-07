@@ -1,3 +1,4 @@
+import { Errors } from '@/base/errors'
 import { appConfig } from '@/configs/app-config'
 import prisma from '@/configs/prisma'
 import { CustomerRole, CustomerStatus, ErrorMessages } from '@/constants'
@@ -37,11 +38,11 @@ export default class AuthService {
 			},
 		})
 		if (!existingCustomer) {
-			throw new Error(ErrorMessages.CUSTOMER_NOT_FOUND)
+			throw new Errors.NotFound(ErrorMessages.CUSTOMER_NOT_FOUND)
 		}
 		const isPasswordValid = await bcrypt.compare(loginParams.password, existingCustomer.password)
 		if (!isPasswordValid) {
-			throw new Error(ErrorMessages.EMAIL_OR_PASSWORD_INCORRECT)
+			throw new Errors.UnAuthorized(ErrorMessages.EMAIL_OR_PASSWORD_INCORRECT)
 		}
 		// generate jwt token
 		const token = jwt.sign(
@@ -65,11 +66,11 @@ export default class AuthService {
 			where: { email: loginParams.email, role: CustomerRole.admin, status: CustomerStatus.active },
 		})
 		if (!existingCustomer) {
-			throw new Error(ErrorMessages.CUSTOMER_NOT_FOUND)
+			throw new Errors.NotFound(ErrorMessages.CUSTOMER_NOT_FOUND)
 		}
 		const isPasswordValid = await bcrypt.compare(loginParams.password, existingCustomer.password)
 		if (!isPasswordValid) {
-			throw new Error(ErrorMessages.EMAIL_OR_PASSWORD_INCORRECT)
+			throw new Errors.UnAuthorized(ErrorMessages.EMAIL_OR_PASSWORD_INCORRECT)
 		}
 		// generate jwt token
 		const token = jwt.sign(
@@ -98,7 +99,7 @@ export default class AuthService {
 			where: { email },
 		})
 		if (existingCustomer) {
-			throw new Error('Customer is already exist')
+			throw new Errors.Conflict('Customer is already exist')
 		}
 		const passwordHash = await bcrypt.hash(password, 10)
 		const customer = await prisma.customer.create({

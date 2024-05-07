@@ -1,3 +1,4 @@
+import { Errors } from '@/base/errors'
 import { asyncHandler } from '@/utils'
 import type { Customer } from '@prisma/client'
 import type { NextFunction, Request, Response } from 'express'
@@ -13,7 +14,7 @@ export const authenticateCustomer = asyncHandler(
 					return next(err)
 				}
 				if (!customerData) {
-					throw new Error('Authentication failed.')
+					throw new Errors.UnAuthorized('Authentication failed.')
 				}
 				req.customer = customerData.data
 				return next()

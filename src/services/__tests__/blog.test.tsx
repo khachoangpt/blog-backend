@@ -1,4 +1,5 @@
 import prisma from '@/configs/__mocks__/prisma'
+import { ErrorMessages } from '@/constants'
 import TagService from '@/services/tag/tag.service'
 import { describe, expect, test, vi } from 'vitest'
 import { blogMock } from '../__mocks__/blog.mock'
@@ -50,7 +51,7 @@ describe('BlogService', () => {
 						thumbnail: 'thumbnail',
 						id: '1',
 					}),
-			).rejects.toThrowError(new Error('Blog not found'))
+			).rejects.toThrowError(new Error(ErrorMessages.BLOG_NOT_FOUND))
 		})
 	})
 
@@ -68,7 +69,7 @@ describe('BlogService', () => {
 			const blogService: BlogService = new BlogService({ tagService })
 			prisma.blog.findFirst.mockResolvedValue(null)
 			expect(async () => await blogService.publishBlog('1')).rejects.toThrowError(
-				new Error('Blog not found.'),
+				new Error(ErrorMessages.BLOG_NOT_FOUND),
 			)
 		})
 		test('publish blog already published', async () => {
@@ -105,7 +106,7 @@ describe('BlogService', () => {
 			const blogService: BlogService = new BlogService({ tagService })
 			prisma.blog.findFirst.mockResolvedValue(null)
 			expect(async () => await blogService.getBlogDetail('1')).rejects.toThrowError(
-				new Error('Blog not found'),
+				new Error(ErrorMessages.BLOG_NOT_FOUND),
 			)
 		})
 	})
